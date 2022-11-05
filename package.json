@@ -1,7 +1,6 @@
 {
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "vmescher",
   "license": "ISC",
   "scripts": {
