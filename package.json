@@ -1,0 +1,16 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "vmescher",
+  "license": "ISC",
+  "scripts": {
+    "dev": "parcel index.pug",
+    "build": "parcel build index.pug"
+  },
+  "devDependencies": {
+    "@parcel/transformer-pug": "^2.7.0",
+    "@parcel/transformer-sass": "^2.7.0",
+    "parcel": "^2.7.0"
+  }
+}
