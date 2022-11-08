@@ -4,20 +4,19 @@
   "author": "vmescher",
   "license": "ISC",
   "scripts": {
-    "dev": "parcel index.pug --no-cache",
-    "build": "parcel build index.pug --no-cache",
-    "start": "node ./server.js"
-  },
-  "engines": {
-    "node": "16.18.1",
-    "npm": "8.19.2"
+    "dev": "parcel ./index.html -p 3000 --no-cache",
+    "build": "npm run clean && parcel build ./index.html --no-cache",
+    "start": "npm run build && node ./server.js --no-cache",
+    "clean": "rm -rf ./dist/"
   },
   "devDependencies": {
-    "@parcel/transformer-pug": "^2.7.0",
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@parcel/transformer-sass": "^2.7.0",
     "parcel": "^2.7.0"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "handlebars": "^4.7.7"
   }
 }
