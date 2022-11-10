@@ -1,0 +1,32 @@
+{{#> loginLayout }}
+    <section class="form">
+        <h1 class="form__title form_subtitled">Welcome back!</h1>
+        <p class="form__subtitle">Login to continue</p>
+        <div class="form__items">
+            <label class="default-input">
+                <span class="default-input__label">Login</span>
+                <div class="default-input__wrapper">
+                    <input type="text" class="default-input__input" placeholder="Login" name="login">
+                </div>
+                <ul class="default-input__errors">
+                    <li class="default-input__error">Error Text</li>
+                </ul>
+            </label>
+            <label class="default-input">
+                <span class="default-input__label">Password</span>
+                <div class="default-input__wrapper">
+                    <input type="text" class="default-input__input" placeholder="Password" name="password">
+                </div>
+                <ul class="default-input__errors">
+                    <li class="default-input__error">Error Text</li>
+                </ul>
+            </label>
+        </div>
+        <div class="form__submit">
+            <button class="btn btn_base" type="submit">Sign in</button>
+        </div>
+        <div class="form__bottom">
+            <a href="#" class="link" onclick="renderPage('regist')">Sign up</a>
+        </div>
+    </section>
+{{/loginLayout}}
