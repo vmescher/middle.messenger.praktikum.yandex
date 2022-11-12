@@ -1,0 +1,12 @@
+<label class="default-input {{#if error}}default-input_error{{/if}}">
+    <span class="default-input__label">{{#if error}}{{ error }}{{else}}{{ label }}{{/if}}</span>
+
+    <div class="default-input__wrapper">
+        <input type="{{#if type}}{{ type }}{{else}}text{{/if}}"
+               class="default-input__input"
+               placeholder="{{ placeholder }}"
+               name="{{ name }}"
+        >
+    </div>
+
+</label>
