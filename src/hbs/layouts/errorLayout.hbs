@@ -1,0 +1,19 @@
+<article class="page-error">
+    <div class="page-error__bg">
+        <img class="page-error__bg-image" src="./img/error-banner.jpg" alt="">
+    </div>
+    <div class="wrapper page-error__wrapper">
+        <div class="page-error__top">
+            <a href="#"  class="page-error__logo logo">
+                <img class="logo__image" src="./img/svg/logo.svg" alt="">
+            </a>
+            {{> reviewNav addClasses='page-error__review-nav'}}
+        </div>
+        <div class="page-error__content">
+            {{> @partial-block }}
+
+            {{> routerLink addClasses='page-error__back' styleClasses='link_trans' pageName='"chats"' text='Back to chats'}}
+        </div>
+    </div>
+
+</article>

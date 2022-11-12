@@ -1,0 +1,100 @@
+.default-input
+	display: flex
+	flex-direction: column
+
+	&:focus-within
+		.default-input__label
+			opacity: 1
+
+	&_error
+		& .default-input
+			&__label
+				color: $red
+				opacity: 1
+
+			&__input
+				color: $red
+				&::placeholder
+					color: $red
+
+			&__wrapper
+				border-color: $red
+
+	&_dirty
+		& .default-input
+			&__label
+				opacity: 1
+
+			&__wrapper
+				border-color: $black
+
+			&__input
+				color: $black
+
+
+	&__label
+		display: block
+		margin: 0 0 8px
+
+		font-size: 12px
+		line-height: 1.5
+		color: $blue
+
+		opacity: 0
+		transition: opacity .3s ease, color .3s ease
+
+	&__wrapper
+		position: relative
+		display: flex
+		align-items: center
+		width: 100%
+		padding-bottom: 8px
+
+		border-bottom: 2px solid $blue
+
+		transition: border-color .3s ease
+
+		&:hover, &:focus-within
+			border-color: $black
+
+	&__input
+		flex: 1 1 100%
+		max-width: 100%
+		padding: 0
+		margin: 0
+
+		font-size: 16px
+		font-weight: 500
+		line-height: 1.2
+
+		color: $blue
+		border: none
+
+		-webkit-appearance: none
+		appearance: none
+		font-family: inherit
+
+		+while-mob
+			font-size: 14px
+
+		&:focus, &:active
+			outline: none
+			color: $black
+
+			&::placeholder
+				color: $black
+
+		&::placeholder
+			color: $blue
+			transition: color .3s ease
+
+		&:-webkit-autofill
+			-webkit-animation-name: autofill
+			-webkit-animation-fill-mode: both
+			-webkit-box-shadow: 0 0 0 30px $white inset !important
+			&:hover, &:focus, &:active
+				-webkit-box-shadow: 0 0 0 30px $white inset !important
+
+		&:-internal-autofill-selected
+			color: inherit !important
+			background-color: $white !important
