@@ -1,4 +1,6 @@
 {{#> errorLayout }}
     <h1 class="page-error__title">404</h1>
     <p class="page-error__text">Page not found</p>
+
+    {{> routerLink addClasses='page-error__back' styleClasses='link_trans' pageName='"chats"' text='Back to chats'}}
 {{/errorLayout}}

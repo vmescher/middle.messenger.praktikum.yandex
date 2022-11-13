@@ -35,3 +35,35 @@
 
 		&:hover
 			color: $black
+
+	&_back
+		display: flex
+		align-items: center
+		color: $black
+
+		&:hover
+			color: $blue
+			&::before
+				background-image: url("data:image/svg+xml,%0A%3Csvg width='11' height='12' viewBox='0 0 11 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.43996 0.349976L-3.91006e-05 5.78998V6.20998L5.43996 11.65L6.69996 10.41L3.13996 6.84998L4.51996 6.88998L10.96 6.90998V5.08998H4.51996L3.15996 5.12998L6.69996 1.58998L5.43996 0.349976Z' fill='%236F91B4'/%3E%3C/svg%3E%0A")
+
+		&::before
+			content: ''
+			display: block
+			flex-shrink: 0
+			width: 16px
+			height: 16px
+			margin-right: 8px
+
+			background-image: url("data:image/svg+xml,%0A%3Csvg width='11' height='12' viewBox='0 0 11 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.43996 0.349976L-3.91006e-05 5.78998V6.20998L5.43996 11.65L6.69996 10.41L3.13996 6.84998L4.51996 6.88998L10.96 6.90998V5.08998H4.51996L3.15996 5.12998L6.69996 1.58998L5.43996 0.349976Z' fill='%23354753'/%3E%3C/svg%3E%0A")
+			background-position: center
+			background-repeat: no-repeat
+			background-size: contain
+
+			transition: background-image .3s ease
+
+	&_red
+		color: $red
+
+		transition: opacity .3s ease
+		&:hover
+			opacity: .75

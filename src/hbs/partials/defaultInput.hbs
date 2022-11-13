@@ -1,4 +1,4 @@
-<label class="default-input {{#if error}}default-input_error{{/if}}">
+<label class="default-input {{ styleClasses }} {{#if disabled}}default-input_disabled{{/if}} {{#if error}}default-input_error{{/if}}">
     <span class="default-input__label">{{#if error}}{{ error }}{{else}}{{ label }}{{/if}}</span>
 
     <div class="default-input__wrapper">
@@ -6,6 +6,8 @@
                class="default-input__input"
                placeholder="{{ placeholder }}"
                name="{{ name }}"
+               value="{{ value }}"
+               {{#if disabled}}disabled{{/if}}
         >
     </div>
 
