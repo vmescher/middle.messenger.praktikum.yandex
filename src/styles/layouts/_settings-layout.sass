@@ -1,0 +1,31 @@
+.settings-layout
+	position: relative
+
+	flex: 1 1 auto
+	display: flex
+	flex-direction: column
+	padding: 48px 0
+
+	background-color: $pastel
+
+	+until-desktop
+		padding: 16px 0 32px
+
+	&__wrapper
+		flex: 1 1 auto
+		display: flex
+		flex-direction: column
+
+	&__back
+		margin: 0 0 48px
+
+		+until-desktop
+			margin: 0 0 32px
+
+	&__review-nav
+		position: absolute
+		top: 48px
+		right: 48px
+		+until-desktop
+			top: 16px
+			right: 16px

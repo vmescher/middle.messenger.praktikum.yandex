@@ -1,0 +1,6 @@
+{{#> errorLayout }}
+    <h1 class="page-error__title">Unexpected error</h1>
+    <p class="page-error__text">Sorry, chats are currently unavailable.<br> Please try later</p>
+
+    {{> routerLink addClasses='page-error__back' styleClasses='link_trans' pageName='"auth"' text='Logout'}}
+{{/errorLayout}}
