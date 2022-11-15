@@ -1,0 +1,30 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "author": "vmescher",
+  "license": "ISC",
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "dev": "npm run clean && parcel ./index.html -p 3000 --open",
+    "build": "npm run clean && parcel build ./index.html --no-cache",
+    "start": "npm run build && node ./server.js --no-cache",
+    "clean": "rm -rf ./dist/"
+  },
+  "staticFiles": {
+    "staticPath": "static"
+  },
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
+    "@parcel/transformer-sass": "2.7.0",
+    "parcel": "2.7.0",
+    "parcel-reporter-static-files-copy": "1.4.0"
+  },
+  "dependencies": {
+    "express": "4.18.2",
+    "handlebars": "4.7.7"
+  },
+  "browserslist": "> 0.5%, last 3 versions, not dead"
+}

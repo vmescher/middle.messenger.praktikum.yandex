@@ -1,0 +1,93 @@
+.review-nav
+	position: relative
+
+	&:hover
+		& .review-nav
+			&__icon
+				background-color: $blue
+				&::before
+					filter: brightness(10)
+			&__tooltip
+				opacity: 1
+				pointer-events: all
+
+	&__icon
+		display: flex
+		align-items: center
+		justify-content: center
+		width: 48px
+		height: 48px
+
+		border-radius: 50%
+		background-color: $white
+		cursor: pointer
+
+		transition: background-color .3s ease
+
+		+until-desktop
+			width: 40px
+			height: 40px
+
+		&::before
+			content: ''
+
+			display: block
+			width: 40%
+			height: 40%
+
+			background-image: url("data:image/svg+xml,%0A%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_14115_23)'%3E%3Cpath d='M19.3295 3.33661C19.3295 3.83076 18.9273 4.23298 18.4332 4.23298H6.09852C5.60437 4.23298 5.20215 3.83076 5.20215 3.33661C5.20215 2.84246 5.60437 2.44024 6.09852 2.44024H18.437C18.9311 2.44408 19.3295 2.84246 19.3295 3.33661ZM18.437 6.88378H6.09852C5.60437 6.88378 5.20215 7.28599 5.20215 7.78014C5.20215 8.2743 5.60437 8.67651 6.09852 8.67651H18.437C18.9311 8.67651 19.3334 8.2743 19.3334 7.78014C19.3295 7.28599 18.9311 6.88378 18.437 6.88378ZM18.437 11.3273H6.09852C5.60437 11.3273 5.20215 11.7295 5.20215 12.2237C5.20215 12.7178 5.60437 13.12 6.09852 13.12H18.437C18.9311 13.12 19.3334 12.7178 19.3334 12.2237C19.3295 11.7295 18.9311 11.3273 18.437 11.3273ZM18.437 15.7708H6.09852C5.60437 15.7708 5.20215 16.1731 5.20215 16.6672C5.20215 17.1614 5.60437 17.5636 6.09852 17.5636H18.437C18.9311 17.5636 19.3334 17.1614 19.3334 16.6672C19.3295 16.1731 18.9311 15.7708 18.437 15.7708ZM2.1568 1.8465C1.33322 1.8465 0.666687 2.51303 0.666687 3.33661C0.666687 4.1602 1.33322 4.83056 2.1568 4.83056C2.98039 4.83056 3.64692 4.1602 3.64692 3.33661C3.64692 2.51303 2.98039 1.8465 2.1568 1.8465ZM2.1568 6.29003C1.33322 6.29003 0.666687 6.95656 0.666687 7.78014C0.666687 8.60373 1.33322 9.27026 2.1568 9.27026C2.98039 9.27026 3.64692 8.60373 3.64692 7.78014C3.64692 6.95656 2.98039 6.29003 2.1568 6.29003ZM2.1568 10.7336C1.33322 10.7336 0.666687 11.4001 0.666687 12.2237C0.666687 13.0473 1.33322 13.7138 2.1568 13.7138C2.98039 13.7138 3.64692 13.0473 3.64692 12.2237C3.64692 11.4001 2.98039 10.7336 2.1568 10.7336ZM2.1568 15.1733C1.33322 15.1733 0.666687 15.8398 0.666687 16.6634C0.666687 17.487 1.33322 18.1535 2.1568 18.1535C2.98039 18.1535 3.64692 17.487 3.64692 16.6634C3.64692 15.8436 2.98039 15.1733 2.1568 15.1733Z' fill='%236F91B4'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_14115_23'%3E%3Crect width='18.6667' height='18.6667' fill='white' transform='translate(0.666687 0.666687)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A")
+			background-position: center
+			background-repeat: no-repeat
+			background-size: 100%
+
+			transition: filter .3s ease
+
+	&__tooltip
+		position: absolute
+		top: 100%
+		right: 100%
+
+		min-width: 200px
+		height: 256px
+		padding: 16px 8px 16px 16px
+
+		background-color: $white
+		border-radius: 20px 0 20px 20px
+		pointer-events: none
+		opacity: 0
+		transition: opacity .3s ease
+
+		&::before
+			content: ''
+			position: absolute
+			bottom: 100%
+			left: 0
+
+			height: 48px
+			width: 100%
+
+		&::after
+			content: ''
+			position: absolute
+			top: 0
+			left: 100%
+
+			height: 100%
+			width: 48px
+
+	&__list
+		display: flex
+		flex-direction: column
+		list-style: none
+		width: 100%
+		max-height: 100%
+		padding: 8px 8px 0 0
+		margin: 0
+
+		overflow-y: auto
+		+Vscroll
+
+	&__item
+		font-size: 14px
+		&:not(:last-child)
+			margin-bottom: 8px

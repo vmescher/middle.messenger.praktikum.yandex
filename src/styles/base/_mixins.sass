@@ -1,0 +1,104 @@
+$desktop-min: 1024px
+$widescreen-min: 1440px
+$mobile-max: 425px
+$tablet-max: 768px
+
+// -==========================================================================================================
+@mixin from-tablet()
+	@media screen and ( min-width: $tablet-max)
+		@content
+
+@mixin from-desktop()
+	@media screen and ( min-width: $desktop-min)
+		@content
+
+@mixin from-widescreen()
+	@media screen and ( min-width: $widescreen-min)
+		@content
+
+@mixin from-mob()
+	@media screen and ( min-width: $mobile-max + 1 )
+		@content
+
+// -==========================================================================================================
+@mixin while-mob()
+	@media screen and ( max-width: $mobile-max  )
+		@content
+
+@mixin until-tablet()
+	@media screen and ( max-width: $tablet-max - 1)
+		@content
+
+@mixin until-desktop()
+	@media screen and ( max-width: $desktop-min - 1)
+		@content
+
+@mixin until-widescreen()
+	@media screen and ( max-width: $widescreen-min - 1)
+		@content
+
+// -==========================================================================================================
+@mixin media-until($width)
+	@media screen and ( max-width: $width)
+		@content
+
+@mixin media-from($width)
+	@media screen and ( min-width: $width)
+		@content
+
+// -==========================================================================================================
+@mixin placeholder()
+	&::-webkit-input-placeholder
+		@content
+	&:-moz-placeholder
+		@content
+	&::-moz-placeholder
+		@content
+	&:-ms-input-placeholder
+		@content
+// -==========================================================================================================
+@mixin hide-scroll()
+	&::-webkit-scrollbar
+		appearance: none
+		-webkit-appearance: none
+		width: 0
+		&:horizontal
+			height: 0
+
+@mixin Hscroll()
+	scrollbar-color: $black $pastel
+	scrollbar-width: thin
+	&::-webkit-scrollbar
+		appearance: none
+		-webkit-appearance: none
+		&:horizontal
+			height: 10px
+	&::-webkit-scrollbar-track
+		border-radius: 2px
+		background: $pastel
+	&::-webkit-scrollbar-thumb
+		background-color: $black
+		border-radius: 2px
+		border: 3px solid $black
+
+@mixin Vscroll()
+	scrollbar-color: $black $pastel
+	scrollbar-width: thin
+	&::-webkit-scrollbar
+		width: 6px
+		appearance: none
+		-webkit-appearance: none
+	&::-webkit-scrollbar-track
+		border-radius: 2px
+		background: $pastel
+	&::-webkit-scrollbar-thumb
+		border-radius: 2px
+		background-color: $black
+		border: 2px solid $black
+
+@mixin cutString($count)
+	overflow: hidden
+	text-overflow: ellipsis
+	display: -webkit-box
+	-webkit-line-clamp: $count
+	-webkit-box-orient: vertical

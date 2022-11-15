@@ -1,0 +1,9 @@
+<article class="settings-layout">
+    {{> reviewNav addClasses='settings-layout__review-nav'}}
+
+    <div class="wrapper settings-layout__wrapper">
+        {{> routerLink addClasses='settings-layout__back' styleClasses='link_back' pageName='"chats"' text='Back to chats'}}
+
+        {{> @partial-block }}
+    </div>
+</article>

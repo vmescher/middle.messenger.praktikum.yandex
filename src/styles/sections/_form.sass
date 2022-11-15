@@ -1,0 +1,108 @@
+.form
+	display: flex
+	flex-direction: column
+	width: 100%
+
+	&_block
+		max-width: 480px
+		padding: 32px 48px
+
+		background: $white
+		border-radius: 20px
+
+		+until-desktop
+			padding: 24px 32px
+			max-width: 420px
+
+		+while-mob
+			padding: 24px
+
+	&__title
+		margin: 0 0 24px
+
+		font-weight: 700
+		font-size: 32px
+		line-height: 1.2
+
+		color: $black
+
+		+until-desktop
+			font-size: 28px
+
+		+while-mob
+			font-size: 24px
+
+		&_subtitled
+			margin: 0 0 8px
+
+	&__subtitle
+		margin: 0 0 24px
+
+		font-weight: 400
+		font-size: 16px
+		line-height: 1.2
+
+		color: $blue
+
+		+until-desktop
+			font-size: 14px
+
+		+while-mob
+			font-size: 12px
+
+	&__text
+		margin: 0 0 32px
+
+		font-weight: 500
+		font-size: 16px
+		line-height: 1.44
+
+		color: $black
+
+	&__items
+		display: grid
+		grid-template-columns: repeat(2, minmax(0, 1fr))
+		grid-gap: 16px 24px
+		+until-desktop
+			grid-template-columns: 100%
+
+	&__item
+		grid-column: 1/-1
+
+		&_cut
+			grid-column: auto
+
+	&__submit
+		display: flex
+		align-items: center
+		margin: 64px 0 0
+		+until-tablet
+			margin: 48px 0 0
+
+	&__submit-btn
+		&:only-child
+			width: 100%
+
+		&:not(:last-child)
+			margin-right: 24px
+
+	&__bottom
+		display: flex
+		flex-direction: column
+		align-items: center
+		margin: 24px 0 0
+
+	&__bottom-notion
+		margin: 0 0 8px
+
+		font-weight: 400
+		font-size: 16px
+		line-height: 1.2
+
+		color: $blue
+
+		+until-desktop
+			font-size: 14px
+
+		+while-mob
+			font-size: 12px

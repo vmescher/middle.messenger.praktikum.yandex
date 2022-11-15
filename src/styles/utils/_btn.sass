@@ -1,0 +1,59 @@
+.btn
+	display: flex
+	align-items: center
+	justify-content: center
+	min-height: 40px
+	padding: 8px 16px
+
+	font: inherit
+	font-size: 16px
+	line-height: 1
+	font-weight: 500
+
+	border-radius: 8px
+	background-color: transparent
+	border: 1px solid transparent
+	cursor: pointer
+	text-decoration: none
+
+	appearance: none
+	transition: border-color .3s ease, background-color .3s ease, color .3s ease
+
+	+while-mob
+		min-height: 36px
+
+		font-size: 14px
+
+	&:active
+		outline: none
+
+	&:focus
+		outline: none
+
+	&_base
+		background-color: $blue
+		border-color: $blue
+		color: $white
+
+		&:hover, &:focus
+			background-color: $white
+			color: $blue
+
+		&:disabled
+			opacity: .75
+			cursor: default
+			pointer-events: none
+
+	&_trans
+		background-color: $white
+		border-color: $blue
+		color: $blue
+
+		&:hover, &:focus
+			background-color: $blue
+			color: $white
+
+		&:disabled
+			opacity: .75
+			cursor: default
+			pointer-events: none
