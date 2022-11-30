@@ -2,49 +2,6 @@
 	display: flex
 	flex-direction: column
 
-	&:focus-within
-		.default-input__label
-			opacity: 1
-
-	&_error
-		& .default-input
-			&__label
-				color: $red
-				opacity: 1
-
-			&__input
-				color: $red
-				&::placeholder
-					color: $red
-
-			&__wrapper
-				border-color: $red
-
-	&_dirty
-		& .default-input
-			&__label
-				opacity: 1
-
-			&__wrapper
-				border-color: $black
-
-			&__input
-				color: $black
-
-	&_disabled
-		pointer-events: none
-
-		& .default-input
-
-			&__label
-				color: $blue
-
-			&__wrapper
-				border-color: $blue
-
-			&__input
-				color: $black
-
 	&__label
 		display: block
 		margin: 0 0 8px
@@ -67,7 +24,8 @@
 
 		transition: border-color .3s ease
 
-		&:hover, &:focus-within
+		&:hover,
+		&:focus-within
 			border-color: $black
 
 	&__input
@@ -84,35 +42,66 @@
 		background-color: transparent
 		border: none
 
-		-webkit-appearance: none
 		appearance: none
 		font-family: inherit
 
 		+while-mob
 			font-size: 14px
 
-		&:focus, &:active
+		&::placeholder
+			color: $blue
+			transition: color .3s ease
+
+		&:focus,
+		&:active
 			outline: none
 			color: $black
 
 			&::placeholder
 				color: $black
 
-		&::placeholder
-			color: $blue
-			transition: color .3s ease
+	&_error
+		& .default-input
+			&__label
+				color: $red
+				opacity: 1
 
-		&:-webkit-autofill
-			-webkit-animation-name: autofill
-			-webkit-animation-fill-mode: both
-			-webkit-box-shadow: 0 0 0 30px transparent inset !important
-			&:hover, &:focus, &:active
-				-webkit-box-shadow: 0 0 0 30px transparent inset !important
+			&__input
+				color: $red
 
-		&:-internal-autofill-selected
-			color: inherit !important
-			background-color: transparent !important
+				&::placeholder
+					color: $red
 
+			&__wrapper
+				border-color: $red
+
+	&_dirty
+		& .default-input
+			&__label
+				opacity: 1
+
+			&__wrapper
+				border-color: $black
+
+			&__input
+				color: $black
+
+	&_disabled
+		pointer-events: none
+
+		& .default-input
+			&__label
+				color: $blue
+
+			&__wrapper
+				border-color: $blue
+
+			&__input
+				color: $black
+
+	&:focus-within
+		.default-input__label
+			opacity: 1
 
 .photo-input
 	position: relative

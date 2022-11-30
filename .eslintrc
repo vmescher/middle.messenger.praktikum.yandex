@@ -2,6 +2,18 @@
 	"extends": "airbnb",
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["@typescript-eslint"],
-	"ignorePatterns": ["/node_modules", "server.js", "/dist"]
+	"ignorePatterns": ["/node_modules", "server.js", "/dist"],
+	"env": {
+		"browser": true
+	},
+	"rules": {
+		"indent": ["error", "tab"],
+		"no-tabs": ["error", {
+			"allowIndentationTabs": true
+		}],
+		"no-unused-vars": ["error", {
+			"argsIgnorePattern": "^_"
+		}]
+	}
 }
 
