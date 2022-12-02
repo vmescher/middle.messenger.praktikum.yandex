@@ -11,9 +11,23 @@
 		"no-tabs": ["error", {
 			"allowIndentationTabs": true
 		}],
-		"no-unused-vars": ["error", {
+		"class-methods-use-this": ["off"],
+		"max-len": ["warn", {
+			"code": 200
+		}],
+		"no-underscore-dangle": ["error", {
+			"allowAfterThis": true
+		}],
+		"no-unused-vars": ["warn", {
 			"argsIgnorePattern": "^_"
-		}]
+		}],
+		"no-use-before-define": ["warn", {
+			"functions": true,
+			"classes": false,
+			"variables": true,
+			"allowNamedExports": false
+		}],
+		"no-param-reassign": ["warn"]
 	}
 }
 

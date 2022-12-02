@@ -1,2 +1,1 @@
-declare module "*.sass";
-
+declare module '*.sass';
