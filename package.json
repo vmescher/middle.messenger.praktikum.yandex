@@ -7,8 +7,8 @@
         "node": ">=12"
     },
     "scripts": {
-        "dev": "npm run clean && parcel ./index.html -p 3000 --open",
-        "build": "npm run clean && parcel build ./index.html --no-cache",
+        "dev": "npm run clean && parcel src/index.html -p 3000 --open",
+        "build": "npm run clean && parcel build src/index.html --no-cache",
         "start": "npm run build && node ./server.js --no-cache",
         "clean": "rm -rf ./dist/",
         "lint": "eslint **/*.ts && stylelint **/*.sass"
@@ -24,6 +24,8 @@
         "@typescript-eslint/parser": "5.45.0",
         "eslint": "8.28.0",
         "eslint-config-airbnb": "19.0.4",
+        "eslint-import-resolver-typescript": "^3.5.2",
+        "eslint-plugin-import": "^2.26.0",
         "parcel": "2.7.0",
         "parcel-reporter-static-files-copy": "1.4.0",
         "postcss-sass": "0.5.0",

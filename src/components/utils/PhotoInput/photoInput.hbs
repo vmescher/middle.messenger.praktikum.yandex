@@ -1,0 +1,11 @@
+<img class="photo-input__image" onerror="this.style.display='none'" src="{{ imageUrl }}" alt="{{ imageAlt }}">
+<label class="photo-input__file {{#if disabled}}photo-input__file_disabled{{/if}}">
+	<span class="photo-input__text">Click to change photo</span>
+	<input
+		type="file"
+		{{#if disabled}}disabled{{/if}}
+		class="photo-input__input"
+		name="{{ name }}"
+		accept="{{ accept }}"
+	>
+</label>

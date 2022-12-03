@@ -60,6 +60,17 @@
 			&::placeholder
 				color: $black
 
+	&_dirty
+		& .default-input
+			&__label
+				opacity: 1
+
+			&__wrapper
+				border-color: $black
+
+			&__input
+				color: $black
+
 	&_error
 		& .default-input
 			&__label
@@ -74,17 +85,6 @@
 
 			&__wrapper
 				border-color: $red
-
-	&_dirty
-		& .default-input
-			&__label
-				opacity: 1
-
-			&__wrapper
-				border-color: $black
-
-			&__input
-				color: $black
 
 	&_disabled
 		pointer-events: none
