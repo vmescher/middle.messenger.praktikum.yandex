@@ -1,15 +1,17 @@
-import Auth from "../components/Auth";
-import Input from "../components/utils/Input";
-import Button from "../components/utils/Button";
-import Link from "../components/utils/Link";
-import EntranceLayout from "../layouts/EntranceLayout";
-import ReviewNav from "../components/utils/ReviewNav";
+import Auth from '../components/Auth';
+import Input from '../components/utils/Input';
+import Button from '../components/utils/Button';
+import Link from '../components/utils/Link';
+import EntranceLayout from '../layouts/EntranceLayout';
+import ReviewNav from '../components/utils/ReviewNav';
+import sendForm from '../utils/SendForm';
 
 const loginInput = new Input({
 	label: 'Login',
 	type: 'text',
 	placeholder: 'Login',
 	name: 'login',
+	validationType: 'login',
 });
 
 const passwordInput = new Input({
@@ -17,11 +19,13 @@ const passwordInput = new Input({
 	type: 'password',
 	placeholder: 'Password',
 	name: 'password',
+	validationType: 'password',
 });
 
 const submitButton = new Button({
 	label: 'Sign In',
 	additionalClasses: ['form__submit-btn'],
+	type: 'submit',
 });
 
 const registrationLink = new Link({
@@ -34,14 +38,21 @@ const auth = new Auth({
 	passwordInput,
 	submitButton,
 	registrationLink,
+	events: {
+		submit: sendForm,
+		reset: () => {
+			passwordInput.setProps({ value: '' });
+			loginInput.setProps({ value: '' });
+		},
+	},
 });
 
 const reviewNav = new ReviewNav({
-	additionalClasses: ['login-layout__review-nav']
+	additionalClasses: ['login-layout__review-nav'],
 });
 
 const authPage = new EntranceLayout({
 	component: auth,
-	reviewNav: reviewNav,
+	reviewNav,
 });
 export default authPage;

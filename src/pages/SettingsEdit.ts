@@ -1,10 +1,11 @@
-import Settings from "../components/SettingsEdit";
-import PhotoInput from "../components/utils/PhotoInput";
-import Input from "../components/utils/Input";
-import Button from "../components/utils/Button";
-import Link from "../components/utils/Link";
-import SettingsLayout from "../layouts/SettingsLayout";
-import ReviewNav from "../components/utils/ReviewNav";
+import Settings from '../components/SettingsEdit';
+import PhotoInput from '../components/utils/PhotoInput';
+import Input from '../components/utils/Input';
+import Button from '../components/utils/Button';
+import Link from '../components/utils/Link';
+import SettingsLayout from '../layouts/SettingsLayout';
+import ReviewNav from '../components/utils/ReviewNav';
+import sendForm from '../utils/SendForm';
 
 const userData = {
 	displayName: 'Super Ivan',
@@ -30,6 +31,7 @@ const displayNameInput = new Input({
 	placeholder: 'Chat name',
 	type: 'text',
 	value: userData.displayName,
+	validationType: 'name',
 });
 
 const loginInput = new Input({
@@ -38,6 +40,7 @@ const loginInput = new Input({
 	placeholder: 'Login',
 	type: 'text',
 	value: userData.login,
+	validationType: 'login',
 });
 
 const firstNameInput = new Input({
@@ -46,6 +49,7 @@ const firstNameInput = new Input({
 	placeholder: 'First name',
 	type: 'text',
 	value: userData.name,
+	validationType: 'name',
 });
 
 const secondNameInput = new Input({
@@ -54,6 +58,7 @@ const secondNameInput = new Input({
 	placeholder: 'Last name',
 	type: 'text',
 	value: userData.lastName,
+	validationType: 'name',
 });
 
 const emailInput = new Input({
@@ -62,6 +67,7 @@ const emailInput = new Input({
 	placeholder: 'E-mail',
 	type: 'email',
 	value: userData.email,
+	validationType: 'email',
 });
 
 const phoneInput = new Input({
@@ -70,20 +76,22 @@ const phoneInput = new Input({
 	placeholder: 'Phone',
 	type: 'tel',
 	value: userData.phone,
+	validationType: 'phone',
 });
 
 const confirmButton = new Button({
 	label: 'Confirm',
-	additionalClasses: ['form__submit-btn']
+	additionalClasses: ['form__submit-btn'],
+	type: 'submit',
 });
 
 const cancelButton = new Button({
 	label: 'Cancel',
-	styleClasses: ['btn_trans']
+	styleClasses: ['btn_trans'],
 });
 
 const reviewNav = new ReviewNav({
-	additionalClasses: ['settings-layout__review-nav']
+	additionalClasses: ['settings-layout__review-nav'],
 });
 
 const settings = new Settings({
@@ -96,7 +104,10 @@ const settings = new Settings({
 	phoneInput,
 	emailInput,
 	confirmButton,
-	cancelButton
+	cancelButton,
+	events: {
+		submit: sendForm,
+	},
 });
 
 const backLink = new Link({
@@ -107,9 +118,9 @@ const backLink = new Link({
 });
 
 const settingsEditPage = new SettingsLayout({
-	backLink: backLink,
+	backLink,
 	component: settings,
-	reviewNav: reviewNav,
+	reviewNav,
 });
 
 export default settingsEditPage;

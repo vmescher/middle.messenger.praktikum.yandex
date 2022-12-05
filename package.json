@@ -11,7 +11,7 @@
         "build": "npm run clean && parcel build src/index.html --no-cache",
         "start": "npm run build && node ./server.js --no-cache",
         "clean": "rm -rf ./dist/",
-        "lint": "eslint **/*.ts && stylelint **/*.sass"
+        "lint": "eslint src/**/*.ts && stylelint **/*.sass"
     },
     "staticFiles": {
         "staticPath": "static"

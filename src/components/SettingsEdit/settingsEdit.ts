@@ -25,6 +25,8 @@ type SettingsEditProps = {
 	confirmButton: Button;
 	cancelButton: Button;
 	userData: IUserData;
+	events?: Record<string, (e?: Event) => void>;
+
 };
 
 export class SettingsEdit extends Block<SettingsEditProps> {

@@ -1,6 +1,6 @@
-import ErrorLayout from "../layouts/ErrorLayout";
-import Error from "../components/Error";
-import ReviewNav from "../components/utils/ReviewNav";
+import ErrorLayout from '../layouts/ErrorLayout';
+import Error from '../components/Error';
+import ReviewNav from '../components/utils/ReviewNav';
 
 const error = new Error({
 	title: '503',
@@ -8,12 +8,12 @@ const error = new Error({
 });
 
 const reviewNav = new ReviewNav({
-	additionalClasses: ['page-error__review-nav']
+	additionalClasses: ['page-error__review-nav'],
 });
 
 const serviceErrorPage = new ErrorLayout({
 	component: error,
-	reviewNav: reviewNav
+	reviewNav,
 });
 
 export default serviceErrorPage;

@@ -1,6 +1,6 @@
-import ModalLayout from "../layouts/ModalsLayout";
+import ModalLayout from '../layouts/ModalsLayout';
 
-const openModal = function(modal: ModalLayout): void {
+function openModal(modal: ModalLayout): void {
 	const root = document.querySelector('#app');
 	if (!root) return;
 
@@ -11,14 +11,14 @@ const openModal = function(modal: ModalLayout): void {
 		root.append(modalsContainer);
 	}
 
-	modalsContainer.append(modal.getContent()!)
-};
+	modalsContainer.append(modal.getContent()!);
+}
 
-const closeModal = function () {
+function closeModal() {
 	const modalsContainer = document.querySelector('.modal-container');
 	if (!modalsContainer) return;
 
 	modalsContainer.innerHTML = '';
-};
+}
 
 export { openModal, closeModal };

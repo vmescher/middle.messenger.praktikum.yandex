@@ -23,7 +23,9 @@ export default class Block<P extends Record<string, unknown> = {}> {
 
 	protected props: Props<P>;
 
-	private children: Record<string, Block>;
+	// Ругается что Block использован до его создания
+	// eslint-disable-next-line
+	protected children: Record<string, Block>;
 
 	private eventBus: () => EventBus<BlockEvents<Props<P>>>;
 
@@ -182,6 +184,7 @@ export default class Block<P extends Record<string, unknown> = {}> {
 			},
 			set(target, prop, value) {
 				const oldValue = { ...target };
+				// eslint-disable-next-line
 				target[prop as keyof Props<P>] = value;
 				self.eventBus().emit(Block.EVENTS.FLOW_CDU, target, oldValue);
 				return true;

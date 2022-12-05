@@ -13,11 +13,13 @@ type RegistrationProps = {
 	passwordInput: Input;
 	submitButton: Button;
 	authLink: Link;
+	events?: Record<string, (e?: Event) => void>;
+
 }
 
 export class Registration extends Block<RegistrationProps> {
 	constructor(props: RegistrationProps) {
-		super('div', props);
+		super('form', props);
 
 		this.element!.classList.add('form', 'form_block', 'login-layout__form');
 	}

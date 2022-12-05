@@ -21,7 +21,8 @@
 	&_base
 		color: $black
 
-		&:hover
+		&:hover,
+		&:focus
 			color: $blue
 
 	&_trans
@@ -33,7 +34,11 @@
 		background-color: $glass
 		border-radius: 16px
 
-		&:hover
+		+while-mob
+			padding: 8px 16px
+
+		&:hover,
+		&:focus
 			color: $black
 
 	&_back
@@ -56,7 +61,8 @@
 
 			transition: background-image .3s ease
 
-		&:hover
+		&:hover,
+		&:focus
 			color: $blue
 
 			&::before
@@ -67,5 +73,6 @@
 
 		transition: opacity .3s ease
 
-		&:hover
+		&:hover,
+		&:focus
 			opacity: .75

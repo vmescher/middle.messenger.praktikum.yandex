@@ -1,0 +1,22 @@
+<div class="chats__nav chats-nav">
+	<a href="#" class="chats-nav__settings"></a>
+	{{{ searchInput }}}
+</div>
+<div class="chats__body">
+	<ul class="chats-list">
+		{{#each chatsData}}
+			<li data-chat-id="{{ this.id }}" class="chats-item chats-list__item">
+				<div class="chats-item__avatar avatar">
+					<img class="avatar__image" src="{{ this.user.avatar }}" onerror="this.style.display = 'none'" alt="{{this.user.name}} avatar">
+				</div>
+				<div class="chats-item__content">
+					<div class="chats-item__info">
+						<p class="chats-item__user">{{ this.user.displayName }}</p>
+						<span class="chats-item__time">{{ this.lastMessage.humanDate }}</span>
+					</div>
+					<p class="chats-item__message {{#if unreadMessages}}chats-item__message_unread{{/if}}" data-unread="{{ this.unreadMessages }}">{{ this.lastMessage.value }}</p>
+				</div>
+			</li>
+		{{/each}}
+	</ul>
+</div>

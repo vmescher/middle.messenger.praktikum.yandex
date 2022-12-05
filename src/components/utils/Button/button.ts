@@ -6,6 +6,7 @@ type ButtonProps = {
 	additionalClasses?: string[];
 	label: string;
 	events?: Record<string, () => void>;
+	type?: string;
 }
 
 export class Button extends Block<ButtonProps> {
@@ -13,6 +14,9 @@ export class Button extends Block<ButtonProps> {
 		super('button', props);
 
 		this.element!.classList.add('btn')
+		if (this.props.type) {
+			this.element!.setAttribute('type', this.props.type)
+		}
 	}
 
 	render() {

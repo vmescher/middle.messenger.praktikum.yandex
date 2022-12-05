@@ -8,6 +8,8 @@ type ChangePasswordProps = {
 	newPasswordInput: Input;
 	confirmButton: Button;
 	cancelButton: Button;
+	events?: Record<string, (e?: Event) => void>;
+
 };
 
 export class ChangePassword extends Block<ChangePasswordProps> {
