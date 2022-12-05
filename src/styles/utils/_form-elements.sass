@@ -2,49 +2,6 @@
 	display: flex
 	flex-direction: column
 
-	&:focus-within
-		.default-input__label
-			opacity: 1
-
-	&_error
-		& .default-input
-			&__label
-				color: $red
-				opacity: 1
-
-			&__input
-				color: $red
-				&::placeholder
-					color: $red
-
-			&__wrapper
-				border-color: $red
-
-	&_dirty
-		& .default-input
-			&__label
-				opacity: 1
-
-			&__wrapper
-				border-color: $black
-
-			&__input
-				color: $black
-
-	&_disabled
-		pointer-events: none
-
-		& .default-input
-
-			&__label
-				color: $blue
-
-			&__wrapper
-				border-color: $blue
-
-			&__input
-				color: $black
-
 	&__label
 		display: block
 		margin: 0 0 8px
@@ -67,7 +24,8 @@
 
 		transition: border-color .3s ease
 
-		&:hover, &:focus-within
+		&:hover,
+		&:focus-within
 			border-color: $black
 
 	&__input
@@ -84,35 +42,66 @@
 		background-color: transparent
 		border: none
 
-		-webkit-appearance: none
 		appearance: none
 		font-family: inherit
 
 		+while-mob
 			font-size: 14px
 
-		&:focus, &:active
+		&::placeholder
+			color: $blue
+			transition: color .3s ease
+
+		&:focus,
+		&:active
 			outline: none
 			color: $black
 
 			&::placeholder
 				color: $black
 
-		&::placeholder
-			color: $blue
-			transition: color .3s ease
+	&_dirty
+		& .default-input
+			&__label
+				opacity: 1
 
-		&:-webkit-autofill
-			-webkit-animation-name: autofill
-			-webkit-animation-fill-mode: both
-			-webkit-box-shadow: 0 0 0 30px transparent inset !important
-			&:hover, &:focus, &:active
-				-webkit-box-shadow: 0 0 0 30px transparent inset !important
+			&__wrapper
+				border-color: $black
 
-		&:-internal-autofill-selected
-			color: inherit !important
-			background-color: transparent !important
+			&__input
+				color: $black
 
+	&_error
+		& .default-input
+			&__label
+				color: $red
+				opacity: 1
+
+			&__input
+				color: $red
+
+				&::placeholder
+					color: $red
+
+			&__wrapper
+				border-color: $red
+
+	&_disabled
+		pointer-events: none
+
+		& .default-input
+			&__label
+				color: $blue
+
+			&__wrapper
+				border-color: $blue
+
+			&__input
+				color: $black
+
+	&:focus-within
+		.default-input__label
+			opacity: 1
 
 .photo-input
 	position: relative
@@ -176,3 +165,71 @@
 
 		+until-desktop
 			font-size: 14px
+
+.search-input
+	padding: 8px 16px
+	display: flex
+	align-items: center
+
+	border: 1px solid $blue
+	border-radius: 8px
+
+	&::before
+		content: ""
+		width: 24px
+		height: 24px
+		flex-shrink: 0
+		margin-right: 16px
+
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M13.9101 13.6965C12.1918 15.4148 9.40587 15.4148 7.68756 13.6965C5.96925 11.9782 5.96925 9.19229 7.68756 7.47399C9.40587 5.75568 12.1918 5.75568 13.9101 7.47399C15.6284 9.19229 15.6284 11.9782 13.9101 13.6965ZM14.4386 15.3561C12.0863 17.1553 8.70758 16.9793 6.55619 14.8279C4.21304 12.4848 4.21304 8.68576 6.55619 6.34262C8.89933 3.99947 12.6983 3.99947 15.0415 6.34262C17.1928 8.49391 17.3689 11.8724 15.5699 14.2247L19.8499 18.5047L18.7186 19.6361L14.4386 15.3561Z' fill='%236F91B4'/%3E%3C/svg%3E")
+		background-position: center
+		background-repeat: no-repeat
+		background-size: 100%
+
+		transition: .3s ease
+
+		+while-mob
+			width: 16px
+			height: 16px
+			margin-right: 8px
+
+	&__input
+		flex: 1 1 100%
+		max-width: 100%
+		width: 100%
+		padding: 0
+		margin: 0
+
+		font-size: 16px
+		font-weight: 500
+		line-height: 1.2
+
+		color: $blue
+		background-color: transparent
+		border: none
+
+		appearance: none
+		font-family: inherit
+
+		+while-mob
+			font-size: 14px
+
+		&::placeholder
+			color: $blue
+			transition: color .3s ease
+
+		&:focus,
+		&:active
+			outline: none
+			color: $black
+
+			&::placeholder
+				color: $black
+
+	&:hover,
+	&:focus-within,
+	&_dirty
+		border-color: $black
+
+		&::before
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M13.9101 13.6965C12.1918 15.4148 9.40587 15.4148 7.68756 13.6965C5.96925 11.9782 5.96925 9.19229 7.68756 7.47399C9.40587 5.75568 12.1918 5.75568 13.9101 7.47399C15.6284 9.19229 15.6284 11.9782 13.9101 13.6965ZM14.4386 15.3561C12.0863 17.1553 8.70758 16.9793 6.55619 14.8279C4.21304 12.4848 4.21304 8.68576 6.55619 6.34262C8.89933 3.99947 12.6983 3.99947 15.0415 6.34262C17.1928 8.49391 17.3689 11.8724 15.5699 14.2247L19.8499 18.5047L18.7186 19.6361L14.4386 15.3561Z' fill='%23354753'/%3E%3C/svg%3E")

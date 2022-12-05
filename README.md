@@ -25,3 +25,8 @@ npm run build
 ```
 npm run start
 ```
+
+### Запуск eslint и stylelint
+```
+npm run lint
+```

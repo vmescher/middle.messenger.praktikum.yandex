@@ -1,16 +1,6 @@
 .review-nav
 	position: relative
 
-	&:hover
-		& .review-nav
-			&__icon
-				background-color: $blue
-				&::before
-					filter: brightness(10)
-			&__tooltip
-				opacity: 1
-				pointer-events: all
-
 	&__icon
 		display: flex
 		align-items: center
@@ -29,7 +19,7 @@
 			height: 40px
 
 		&::before
-			content: ''
+			content: ""
 
 			display: block
 			width: 40%
@@ -58,7 +48,7 @@
 		transition: opacity .3s ease
 
 		&::before
-			content: ''
+			content: ""
 			position: absolute
 			bottom: 100%
 			left: 0
@@ -67,7 +57,7 @@
 			width: 100%
 
 		&::after
-			content: ''
+			content: ""
 			position: absolute
 			top: 0
 			left: 100%
@@ -89,5 +79,18 @@
 
 	&__item
 		font-size: 14px
+
 		&:not(:last-child)
 			margin-bottom: 8px
+
+	&:hover
+		& .review-nav
+			&__icon
+				background-color: $blue
+
+				&::before
+					filter: brightness(10)
+
+			&__tooltip
+				opacity: 1
+				pointer-events: all

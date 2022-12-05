@@ -1,0 +1,7 @@
+<label class="toolbar__file toolbar-file">
+	<input class="toolbar-file__input" type="file" name="{{ fileSettings.name }}" {{#if fileSettings.multiple}}multiple{{/if}} accept="{{ fileSettings.accept }}">
+</label>
+<label class="toolbar__message toolbar-message">
+	<textarea data-validation-type="{{ messageSettings.validationType }}" class="toolbar-message__textarea" placeholder="{{ messageSettings.placeholder }}" name="{{ messageSettings.name }}">{{ value }}</textarea>
+</label>
+<button class="toolbar__send" type="submit"></button>
