@@ -76,6 +76,14 @@ export default class Block<P extends Record<string, unknown> = {}> {
 		});
 	}
 
+	private _removeEvents(): void {
+		const { events = {} } = this.props;
+
+		Object.keys(events).forEach((eventName) => {
+			this._element!.removeEventListener(eventName, events[eventName]);
+		});
+	}
+
 	_registerEvents(eventBus: EventBus<BlockEvents<Props<P>>>): void {
 		eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
 		eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
@@ -100,7 +108,7 @@ export default class Block<P extends Record<string, unknown> = {}> {
 
 	}
 
-	_componentDidMount(): void {
+	protected _componentDidMount(): void {
 		this.componentDidMount();
 	}
 
@@ -112,6 +120,7 @@ export default class Block<P extends Record<string, unknown> = {}> {
 
 	private _componentDidUpdate(oldProps: Props<P>, newProps: Props<P>): void {
 		if (this.componentDidUpdate(oldProps, newProps)) {
+			this._removeEvents();
 			this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 		}
 	}
