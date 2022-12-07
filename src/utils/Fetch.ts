@@ -8,22 +8,25 @@ interface Options {
 	withCredentials?: boolean;
 }
 
+type HTTPMethod = (url: string, options?: Partial<Options>) => Promise<unknown>;
+
 export default class Fetch {
-	public get(url: string, options: Partial<Options> = {}) {
-		return this.request(url, { ...options, method: 'GET' }, options.timeout);
-	}
+	public get: HTTPMethod = (url, options = {}) => {
+		const { data } = options;
+		let queriedUrl = url;
 
-	public post(url: string, options: Partial<Options> = {}) {
-		return this.request(url, { ...options, method: 'POST' }, options.timeout);
-	}
+		if (data) {
+			queriedUrl += this.queryStringify(data);
+		}
 
-	public put(url: string, options: Partial<Options> = {}) {
-		return this.request(url, { ...options, method: 'PUT' }, options.timeout);
-	}
+		return this.request(queriedUrl, { ...options, method: 'GET' }, options.timeout);
+	};
 
-	public delete(url: string, options: Partial<Options> = {}) {
-		return this.request(url, { ...options, method: 'DELETE' }, options.timeout);
-	}
+	public post: HTTPMethod = (url, options = {}) => this.request(url, { ...options, method: 'POST' }, options.timeout);
+
+	public put: HTTPMethod = (url, options = {}) => this.request(url, { ...options, method: 'PUT' }, options.timeout);
+
+	public delete: HTTPMethod = (url, options = {}) => this.request(url, { ...options, method: 'DELETE' }, options.timeout);
 
 	private request(url: string, options: Options, timeout = 5000) {
 		const {
@@ -32,24 +35,11 @@ export default class Fetch {
 			headers,
 			withCredentials = false,
 		} = options;
-		let formData: string | FormData;
-
-		if (data) {
-			if (method === 'GET') {
-				formData = this.queryStringify(data);
-			} else {
-				formData = this.objectToFormData(data);
-			}
-		}
 
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
 
-			if (method === 'GET' && formData) {
-				xhr.open(method, url + formData);
-			} else {
-				xhr.open(method, url);
-			}
+			xhr.open(method, url);
 
 			xhr.withCredentials = withCredentials;
 			xhr.timeout = timeout;
@@ -68,9 +58,10 @@ export default class Fetch {
 			xhr.onerror = reject;
 			xhr.ontimeout = reject;
 
-			if (method === 'GET' || !formData) {
+			if (method === 'GET' || !data) {
 				xhr.send();
 			} else {
+				const formData = this.objectToFormData(data);
 				xhr.send(formData);
 			}
 		});

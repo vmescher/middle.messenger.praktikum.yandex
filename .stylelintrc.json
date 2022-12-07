@@ -36,6 +36,7 @@
 	],
 	"ignoreFiles": [
 		"/node_modules",
-		"/dist"
+		"/dist",
+		"**/*.css"
 	]
 }
