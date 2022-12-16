@@ -1,0 +1,226 @@
+.dialog-timeline
+	padding: 8px 0
+	max-height: 100%
+	height: 100%
+	display: flex
+	flex-direction: column
+
+	overflow-y: auto
+	+hide-scroll
+
+	&__wrapper
+		margin: auto 0 0
+		width: 100%
+		padding: 0 16px
+		display: flex
+		flex-direction: column
+
+		+until-tablet
+			padding: 0 8px
+
+	&__item
+		align-self: flex-end
+		max-width: 45%
+		margin-bottom: 16px
+		+until-tablet
+			max-width: 75%
+
+		&_date
+			display: block
+			align-self: center
+			padding: 8px 16px
+			margin-bottom: 16px
+
+			font-weight: 500
+			font-size: 16px
+			line-height: 1.125
+			color: $white
+
+			background-color: $glass
+			border-radius: 16px
+			user-select: none
+
+			+while-mob
+				font-size: 14px
+
+		&:last-child
+			margin-bottom: 0
+
+		&_incoming
+			align-self: flex-start
+
+			& + .dialog-timeline__item
+				&:not(.dialog-timeline__item_incoming)
+					margin-top: 16px
+
+			& + .dialog-timeline__item_incoming,
+			& + .dialog-timeline__item_date
+				margin-top: 0
+
+		& + .dialog-timeline__item_incoming,
+		& + .dialog-timeline__item_date
+			margin-top: 16px
+
+	&__time
+		font-size: 10px
+		line-height: 1
+		font-weight: 500
+		color: $black
+
+	&__status
+		display: block
+		width: 10px
+		height: 10px
+		margin-left: 4px
+		background-image: url("data:image/svg+xml,%0A%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline y1='-0.5' x2='3.90824' y2='-0.5' transform='matrix(0.731055 0.682318 -0.731055 0.682318 1 5.33301)' stroke='%23354753'/%3E%3Cline y1='-0.5' x2='5.86237' y2='-0.5' transform='matrix(0.731055 -0.682318 0.731055 0.682318 3.85742 8)' stroke='%23354753'/%3E%3Cline y1='-0.5' x2='5.86237' y2='-0.5' transform='matrix(0.731055 -0.682318 0.731055 0.682318 6.71429 8)' stroke='%23354753'/%3E%3C/svg%3E%0A")
+		background-position: center
+		background-repeat: no-repeat
+		background-size: 150%
+
+		&_unread
+			background-image: url("data:image/svg+xml,%0A%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline y1='-0.5' x2='3.90824' y2='-0.5' transform='matrix(0.731055 0.682318 -0.731055 0.682318 1 5.33301)' stroke='%236F91B4'/%3E%3Cline y1='-0.5' x2='5.86237' y2='-0.5' transform='matrix(0.731055 -0.682318 0.731055 0.682318 3.85742 8)' stroke='%236F91B4'/%3E%3C/svg%3E%0A")
+
+		&_error
+			background-image: url("data:image/svg+xml,%0A%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline y1='-0.5' x2='3.90824' y2='-0.5' transform='matrix(0.731055 0.682318 -0.731055 0.682318 1 5.33301)' stroke='%23e36a5f'/%3E%3Cline y1='-0.5' x2='5.86237' y2='-0.5' transform='matrix(0.731055 -0.682318 0.731055 0.682318 3.85742 8)' stroke='%23e36a5f'/%3E%3C/svg%3E%0A")
+
+.dialog-message
+	padding: 16px
+	background-color: $orange
+	border-radius: 16px 16px 0
+
+	&__body
+		margin: 0
+		padding: 0
+		font-weight: 500
+		font-size: 14px
+		line-height: 1.14
+		color: $black
+
+		+until-tablet
+			font-size: 12px
+
+	&__bottom
+		margin-top: 8px
+		display: flex
+		align-items: center
+		justify-content: flex-end
+
+	&_incoming
+		background-color: $pastel
+		border-radius: 16px 16px 16px 0
+
+.dialog-image
+	position: relative
+
+	max-width: 250px
+
+	border: 1px solid $pastel
+	border-radius: 12px
+
+	overflow: hidden
+
+	+until-tablet
+		max-width: 175px
+
+	&__image
+		display: block
+		max-width: 100%
+		width: auto
+		height: auto
+
+		object-fit: contain
+
+	&__bottom
+		position: absolute
+		bottom: 0
+		left: 0
+
+		width: 100%
+		padding: 8px
+		display: flex
+		align-items: center
+		justify-content: flex-end
+
+.dialog-file
+	position: relative
+
+	padding: 8px
+	max-width: 250px
+	display: flex
+	align-items: center
+
+	background-color: $orange
+	border-radius: 12px
+	cursor: pointer
+
+	+until-tablet
+		max-width: 175px
+
+	&::before
+		content: ""
+		width: 48px
+		height: 48px
+		margin-right: 8px
+		flex-shrink: 0
+
+		background-image: url("data:image/svg+xml,%0A%3Csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_14127_14)'%3E%3Cpath d='M31 0H5C2.23858 0 0 2.23858 0 5V31C0 33.7614 2.23858 36 5 36H31C33.7614 36 36 33.7614 36 31V5C36 2.23858 33.7614 0 31 0Z' fill='%23f5e7c9'/%3E%3Cpath d='M15.5625 18.2027H20.4374M15.5625 21.4459H18M11.5 12.1216V23.8784C11.5 24.3085 11.6712 24.7209 11.9759 25.025C12.2807 25.3292 12.694 25.5 13.125 25.5H22.8749C23.3059 25.5 23.7192 25.3292 24.024 25.025C24.3287 24.7209 24.4999 24.3085 24.4999 23.8784V15.6422C24.4999 15.4261 24.4566 15.2123 24.3726 15.0132C24.2886 14.8141 24.1656 14.6337 24.0108 14.4827L20.4033 10.9622C20.0997 10.6659 19.692 10.5001 19.2674 10.5H13.125C12.694 10.5 12.2807 10.6708 11.9759 10.975C11.6712 11.2791 11.5 11.6915 11.5 12.1216Z' stroke='%23D1B377' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M19.625 10.5V13.7432C19.625 14.1733 19.7962 14.5858 20.1009 14.8899C20.4057 15.194 20.819 15.3649 21.25 15.3649H24.5' stroke='%23D1B377' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_14127_14'%3E%3Crect width='36' height='36' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A")
+		background-position: center
+		background-repeat: no-repeat
+		background-size: 100%
+		border: 1px solid $orange-dark
+		border-radius: 8px
+
+		+until-tablet
+			width: 32px
+			height: 32px
+
+	&__info
+		display: flex
+		flex-direction: column
+		width: calc(100% - 56px)
+
+	&__name
+		margin: 0
+
+		font-weight: 500
+		font-size: 14px
+		line-height: 1.14
+		color: $black
+
+		white-space: nowrap
+		overflow: hidden
+		text-overflow: ellipsis
+
+		+until-tablet
+			font-size: 12px
+
+	&__weight
+		margin-top: 4px
+
+		font-weight: 500
+		font-size: 12px
+		line-height: 1
+		color: $orange-dark
+
+		+until-tablet
+			font-size: 10px
+
+	&__bottom
+		position: absolute
+		bottom: 0
+		left: 0
+
+		width: 100%
+		padding: 8px
+		display: flex
+		align-items: center
+		justify-content: flex-end
+
+	&_incoming
+		background-color: $pastel
+
+		&::before
+			background-image: url("data:image/svg+xml,%0A%3Csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_14127_14)'%3E%3Cpath d='M31 0H5C2.23858 0 0 2.23858 0 5V31C0 33.7614 2.23858 36 5 36H31C33.7614 36 36 33.7614 36 31V5C36 2.23858 33.7614 0 31 0Z' fill='%23EFEEEC'/%3E%3Cpath d='M15.5625 18.2027H20.4374M15.5625 21.4459H18M11.5 12.1216V23.8784C11.5 24.3085 11.6712 24.7209 11.9759 25.025C12.2807 25.3292 12.694 25.5 13.125 25.5H22.8749C23.3059 25.5 23.7192 25.3292 24.024 25.025C24.3287 24.7209 24.4999 24.3085 24.4999 23.8784V15.6422C24.4999 15.4261 24.4566 15.2123 24.3726 15.0132C24.2886 14.8141 24.1656 14.6337 24.0108 14.4827L20.4033 10.9622C20.0997 10.6659 19.692 10.5001 19.2674 10.5H13.125C12.694 10.5 12.2807 10.6708 11.9759 10.975C11.6712 11.2791 11.5 11.6915 11.5 12.1216Z' stroke='%236F91B4' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M19.625 10.5V13.7432C19.625 14.1733 19.7962 14.5858 20.1009 14.8899C20.4057 15.194 20.819 15.3649 21.25 15.3649H24.5' stroke='%236F91B4' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_14127_14'%3E%3Crect width='36' height='36' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A")
+
+		&__weight
+			color: $blue

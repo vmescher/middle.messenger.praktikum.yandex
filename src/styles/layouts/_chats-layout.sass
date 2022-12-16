@@ -1,0 +1,68 @@
+.chats-layout
+	flex: 1 1 auto
+	width: 100%
+	height: 100%
+	max-height: 100vh
+	display: grid
+	grid-template-columns: minmax(375px, 1fr) minmax(0, 2fr)
+
+	background-color: $pastel
+
+	+until-desktop()
+		grid-template-columns: 100%
+
+	&__left
+		display: flex
+		height: 100%
+
+		overflow: hidden
+
+	&__right
+		position: relative
+		z-index: 0
+
+		display: flex
+		align-items: center
+		justify-content: center
+		height: 100%
+
+		overflow: hidden
+		+until-desktop()
+			display: none
+
+	&__bg
+		position: absolute
+		inset: 0
+		z-index: -1
+
+	&__notion
+		display: block
+		padding: 8px 32px
+
+		font-weight: 500
+		font-size: 16px
+		line-height: 1.125
+		color: $white
+
+		background-color: $glass
+		border-radius: 16px
+		user-select: none
+
+		+while-mob
+			padding: 8px 16px
+
+			font-size: 14px
+
+	&__review-nav
+		position: absolute
+		right: 48px
+		top: 48px
+
+	&_dialog
+		+until-desktop
+			& .chats-layout
+				&__left
+					display: none
+
+				&__right
+					display: flex

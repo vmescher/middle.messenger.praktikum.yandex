@@ -1,0 +1,72 @@
+<div class="dialog__top">
+	<div class="dialog__info">
+		<div class="dialog__avatar avatar">
+			<img class="avatar__image" src="{{ dialogData.user.avatar }}" onerror="this.style.display = 'none'" alt="{{ dialogData.user.displayName }} avatar">
+		</div>
+		<p class="dialog__user">{{ dialogData.user.displayName }}</p>
+	</div>
+	{{#if actionsList}}
+		<div class="dialog__actions actions">
+			<div class="actions__icon"></div>
+			<div class="actions__tooltip">
+				<ul class="actions__list">
+					{{#each actionsList}}
+						<li data-action="{{ this.action }}" class="action__item link link_base">{{ this.name }}</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+		{{{ reviewNav }}}
+	{{/if}}
+</div>
+<div class="dialog__body">
+	<section class="dialog__timeline dialog-timeline">
+		<div class="dialog-timeline__wrapper">
+			<span class="dialog-timeline__item dialog-timeline__item_date">10th June</span>
+			<div class="dialog-timeline__item dialog-timeline__item_incoming dialog-message dialog-message_incoming">
+				<p class="dialog-message__body">
+					Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
+					<br>
+					<br>
+					Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
+				</p>
+				<div class="dialog-message__bottom">
+					<span class="dialog-timeline__time">11:56</span>
+				</div>
+			</div>
+			<div class="dialog-timeline__item dialog-timeline__item_incoming dialog-image">
+				<img class="dialog-image__image" src="./img/dialog-image.png">
+				<div class="dialog-image__bottom">
+					<span class="dialog-timeline__time">11:56</span>
+				</div>
+			</div>
+			<div class="dialog-timeline__item dialog-message">
+				<p class="dialog-message__body">Круто!</p>
+				<div class="dialog-message__bottom">
+					<span class="dialog-timeline__time">12:04</span>
+					<div class="dialog-timeline__status dialog-timeline__status_read"></div>
+				</div>
+			</div>
+			<div class="dialog-timeline__item dialog-image">
+				<img class="dialog-image__image" src="./img/login-banner.jpg">
+				<div class="dialog-image__bottom">
+					<span class="dialog-timeline__time">12:04</span>
+					<div class="dialog-timeline__status dialog-timeline__status_unread"></div>
+				</div>
+			</div>
+			<div class="dialog-timeline__item dialog-file">
+				<div class="dialog-file__info">
+					<p class="dialog-file__name">Презентация</p>
+					<span class="dialog-file__weight">2.1 мб</span>
+				</div>
+				<div class="dialog-file__bottom">
+					<span class="dialog-timeline__time">12:04</span>
+					<div class="dialog-timeline__status dialog-timeline__status_unread"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="dialog__toolbar">
+		{{{ messageInput }}}
+	</div>
+</div>

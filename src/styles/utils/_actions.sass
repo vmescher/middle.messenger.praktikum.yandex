@@ -1,0 +1,101 @@
+.actions
+	position: relative
+
+	&__icon
+		display: flex
+		align-items: center
+		justify-content: center
+		width: 48px
+		height: 48px
+
+		border-radius: 50%
+		background-color: $white
+		cursor: pointer
+
+		transition: background-color .3s ease
+
+		+until-desktop
+			width: 40px
+			height: 40px
+
+		+while-mob
+			width: 24px
+			height: 24px
+
+		&::before
+			content: ""
+
+			display: block
+			width: 40%
+			height: 40%
+
+			background-image: url("data:image/svg+xml,%0A%3Csvg width='40' height='8' viewBox='0 0 40 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='4' transform='rotate(-90 4 4)' fill='%236F91B4'/%3E%3Ccircle cx='20' cy='4' r='4' transform='rotate(-90 20 4)' fill='%236F91B4'/%3E%3Ccircle cx='36' cy='4' r='4' transform='rotate(-90 36 4)' fill='%236F91B4'/%3E%3C/svg%3E%0A")
+			background-position: center
+			background-repeat: no-repeat
+			background-size: 100%
+
+			transition: filter .3s ease
+
+	&__tooltip
+		position: absolute
+		top: 100%
+		right: 100%
+
+		min-width: 200px
+		height: max-content
+		max-height: 200px
+		padding: 16px 8px 16px 16px
+
+		background-color: $white
+		border-radius: 20px 0 20px 20px
+		pointer-events: none
+		opacity: 0
+		transition: opacity .3s ease
+
+		&::before
+			content: ""
+			position: absolute
+			bottom: 100%
+			left: 0
+
+			height: 48px
+			width: 100%
+
+		&::after
+			content: ""
+			position: absolute
+			top: 0
+			left: 100%
+
+			height: 100%
+			width: 48px
+
+	&__list
+		display: flex
+		flex-direction: column
+		list-style: none
+		width: 100%
+		max-height: 100%
+		padding: 8px 8px 8px 0
+		margin: 0
+
+		overflow-y: auto
+		+Vscroll
+
+	&__item
+		font-size: 14px
+
+		&:not(:last-child)
+			margin-bottom: 8px
+
+	&:hover
+		& .actions
+			&__icon
+				background-color: $blue
+
+				&::before
+					filter: brightness(10)
+
+			&__tooltip
+				opacity: 1
+				pointer-events: all
