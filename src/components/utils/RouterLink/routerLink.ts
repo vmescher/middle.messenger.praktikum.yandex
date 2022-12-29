@@ -1,7 +1,8 @@
 import Block from "../../../utils/Block";
-import template from './link.hbs';
+import template from './routerLink.hbs';
+import { PropsWithRouter, withRouter } from "../../../hocs/withRouter";
 
-type LinkProps = {
+export interface RouterLinkProps extends PropsWithRouter {
 	styleClasses?: string[];
 	additionalClasses?: string[];
 	label: string;
@@ -9,11 +10,24 @@ type LinkProps = {
 	events?: Record<string, (e?: Event) => void>;
 }
 
-export class Link extends Block<LinkProps> {
-	constructor(props: LinkProps) {
-		super('a', props);
+class Link extends Block<RouterLinkProps> {
+	constructor(props: RouterLinkProps) {
+		super('a', {
+			...props,
+			events: {
+				click: (e) => {
+					e?.preventDefault();
+					this.navigate()
+				}
+			}
+		});
 
 		this.element!.classList.add('link');
+		this.element!.addEventListener('click', this.navigate.bind(this));
+	}
+
+	navigate() {
+		this.props.router.go(this.props.href);
 	}
 
 	render() {
@@ -33,3 +47,5 @@ export class Link extends Block<LinkProps> {
 		return this.compile(template, { ...this.props })
 	}
 }
+
+export const RouterLink = withRouter(Link as unknown as typeof Block);

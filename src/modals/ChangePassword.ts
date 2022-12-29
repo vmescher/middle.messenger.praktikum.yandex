@@ -3,7 +3,6 @@ import ModalLayout from '../layouts/ModalsLayout';
 import Input from '../components/utils/Input';
 import Button from '../components/utils/Button';
 import { closeModal } from '../utils/Modal';
-import sendForm from '../utils/SendForm';
 
 const oldPasswordInput = new Input({
 	type: 'password',
@@ -40,9 +39,6 @@ const changePasswordForm = new ChangePassword({
 	newPasswordInput,
 	confirmButton,
 	cancelButton,
-	events: {
-		submit: sendForm,
-	},
 });
 
 const changePasswordModal = new ModalLayout({

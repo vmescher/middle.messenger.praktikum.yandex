@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import { TemplateDelegate } from 'handlebars';
 import EventBus from './EventBus';
+import {isEqual} from "./helpers";
 
 type BlockEvents<P> = {
 	init: [];
@@ -9,9 +10,9 @@ type BlockEvents<P> = {
 	'flow:render': [];
 }
 
-type Props<P extends Record<string, unknown> = {}> = {events?: Record<string, () => void>} & P;
+type Props<P extends object = {}> = {events?: Record<string, (e?: Event) => void>} & P;
 
-export default class Block<P extends Record<string, unknown> = {}> {
+export default class Block<P extends object = {}> {
 	static EVENTS = {
 		INIT: 'init',
 		FLOW_CDM: 'flow:component-did-mount',
@@ -126,7 +127,7 @@ export default class Block<P extends Record<string, unknown> = {}> {
 	}
 
 	protected componentDidUpdate(oldProps: Props<P>, newProps: Props<P>) {
-		return !Object.entries(oldProps).every(([key, value]) => newProps[key] === value);
+		return !isEqual(oldProps, newProps);
 	}
 
 	public setProps = (nextProps: Partial<Props<P>>): void => {
@@ -188,14 +189,14 @@ export default class Block<P extends Record<string, unknown> = {}> {
 
 		return new Proxy(props, {
 			get(target, prop) {
-				const value = target[prop as string];
+				const value = target[prop as keyof P];
 				return typeof value === 'function' ? value.bind(target) : value;
 			},
 			set(target, prop, value) {
 				const oldValue = { ...target };
 				// eslint-disable-next-line
 				target[prop as keyof Props<P>] = value;
-				self.eventBus().emit(Block.EVENTS.FLOW_CDU, target, oldValue);
+				self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldValue, target);
 				return true;
 			},
 			deleteProperty() {

@@ -1,10 +1,13 @@
 import CheckValidity, { FieldTypes } from './ValidateField';
 
-export default function sendForm(e?: Event): void {
-	if (!e) return;
-	e.preventDefault();
+export default function validateForm(e: Event): boolean {
+	if (!e) {
+		throw Error('event parameter is not transmitted');
+	}
 
-	if (!(e.target instanceof HTMLFormElement)) return;
+	if (!(e.target instanceof HTMLFormElement)) {
+		throw Error('event target is not HTMLFormElement');
+	}
 
 	const form = e.target;
 	let isFormValid = true;
@@ -25,16 +28,7 @@ export default function sendForm(e?: Event): void {
 
 	if (!isFormValid) {
 		form.reportValidity();
-	} else {
-		const formData = new FormData(form as HTMLFormElement);
-		const formObj: Record<string, unknown> = {};
-
-		formData.forEach((value, key) => {
-			formObj[key] = value;
-		});
-
-		// eslint-disable-next-line
-		console.log(formObj);
-		form.reset();
 	}
+
+	return isFormValid;
 }

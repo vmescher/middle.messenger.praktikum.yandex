@@ -41,6 +41,18 @@ export class Input extends Block<InputProps> {
 		}, { once: true });
 	};
 
+	getName() {
+		return this.props.name;
+	}
+
+	setError(errorMessage: string) {
+		this.setProps({ error: errorMessage });
+	}
+
+	getValue() {
+		return this.props.value;
+	}
+
 	render() {
 		if (this.props.styleClasses) {
 			this.element!.classList.add(...this.props.styleClasses)

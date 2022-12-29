@@ -1,15 +1,9 @@
 import Block from "../../utils/Block";
 import template from "./settingsLayout.hbs";
-import ReviewNav from "../../components/utils/ReviewNav";
-import Link from "../../components/utils/Link";
-import Settings from "../../components/Settings";
-import SettingsEdit from "../../components/SettingsEdit";
 
 type SettingsLayoutProps = {
-	component: Settings | SettingsEdit;
-	backLink: Link;
-	reviewNav?: ReviewNav;
-
+	component: Block;
+	backLink: Block;
 }
 
 export class SettingsLayout extends Block<SettingsLayoutProps> {

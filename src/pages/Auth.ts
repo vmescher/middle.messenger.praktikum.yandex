@@ -1,10 +1,8 @@
 import Auth from '../components/Auth';
 import Input from '../components/utils/Input';
 import Button from '../components/utils/Button';
-import Link from '../components/utils/Link';
 import EntranceLayout from '../layouts/EntranceLayout';
-import ReviewNav from '../components/utils/ReviewNav';
-import sendForm from '../utils/SendForm';
+import RouterLink from "../components/utils/RouterLink";
 
 const loginInput = new Input({
 	label: 'Login',
@@ -28,9 +26,9 @@ const submitButton = new Button({
 	type: 'submit',
 });
 
-const registrationLink = new Link({
+const registrationLink = new RouterLink({
 	label: 'Sign Up',
-	href: '#',
+	href: '/sign-up',
 });
 
 const auth = new Auth({
@@ -38,21 +36,12 @@ const auth = new Auth({
 	passwordInput,
 	submitButton,
 	registrationLink,
-	events: {
-		submit: sendForm,
-		reset: () => {
-			passwordInput.setProps({ value: '' });
-			loginInput.setProps({ value: '' });
-		},
-	},
 });
 
-const reviewNav = new ReviewNav({
-	additionalClasses: ['login-layout__review-nav'],
-});
-
-const authPage = new EntranceLayout({
-	component: auth,
-	reviewNav,
-});
-export default authPage;
+export default class authPage extends EntranceLayout {
+	constructor() {
+		super({
+			component: auth,
+		});
+	}
+}

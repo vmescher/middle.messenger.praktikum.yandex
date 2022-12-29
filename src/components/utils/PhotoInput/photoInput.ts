@@ -4,7 +4,7 @@ import template from "./photoInput.hbs";
 type PhotoInputProps = {
 	styleClasses?: string[];
 	additionalClasses?: string[];
-	imageUrl?: string;
+	value?: string;
 	imageAlt?: string;
 	name: string;
 	accept: string;
@@ -16,6 +16,14 @@ export class PhotoInput extends Block<PhotoInputProps> {
 		super('div', props);
 
 		this.element!.classList.add('photo-input');
+	}
+
+	getName() {
+		return this.props.name;
+	}
+
+	getValue() {
+		return this.props.value;
 	}
 
 	render() {
