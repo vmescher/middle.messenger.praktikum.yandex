@@ -76,9 +76,12 @@ const phoneInput = new Input({
 	validationType: 'phone',
 });
 
-const editButton = new Button({
+const editButton = new RouterLink({
 	label: 'Edit',
+	styleClasses: ['btn', 'btn_base'],
 	additionalClasses: ['form__submit-btn'],
+	tagName: 'a',
+	href: Routes.SettingsEdit,
 });
 
 const changePasswordButton = new Button({

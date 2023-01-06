@@ -44,6 +44,7 @@ export class Auth extends Block<AuthProps> {
 				}
 			}
 		});
+
 		this.element!.addEventListener('reset', async () => {
 			Object.values(this.children)
 				.filter(child => child instanceof Input)

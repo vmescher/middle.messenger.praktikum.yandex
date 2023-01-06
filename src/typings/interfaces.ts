@@ -14,6 +14,28 @@ export interface RegistrationData {
 	phone: string;
 }
 
+export interface UserData {
+	[key: string]: string;
+	first_name: string;
+	second_name: string;
+	display_name: string;
+	login: string;
+	email: string;
+	password: string;
+	phone: string;
+}
+
+export interface UserPassword {
+	[key: string]: string;
+	oldPassword: string;
+	newPassword: string;
+}
+
+export interface UserAvatar {
+	[key: string]: File | FileList;
+	avatar: File | FileList;
+}
+
 export interface IUser {
 	[key: string]: string | number;
 	id: number;

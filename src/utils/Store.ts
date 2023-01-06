@@ -1,5 +1,6 @@
 import EventBus from "./EventBus";
 import { set } from "./helpers";
+import {withStore} from "../hocs/withStore";
 
 export enum StoreEvents {
 	Updated = 'updated'
@@ -38,3 +39,11 @@ class Store extends EventBus<StoreEventsType> {
 	}
 }
 export default new Store();
+
+const withUser = withStore((state) => {
+	return {
+		user_data: state.user.user_data ? { ...state.user.user_data } : null,
+	}
+});
+
+export { withUser };

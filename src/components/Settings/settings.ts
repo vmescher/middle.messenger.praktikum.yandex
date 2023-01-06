@@ -4,9 +4,9 @@ import Link from "../utils/Link";
 import Input from "../utils/Input";
 import PhotoInput from "../utils/PhotoInput";
 import Button from "../utils/Button";
-import {withStore} from "../../hocs/withStore";
 import {IUser} from "../../typings/interfaces";
 import {isEqual} from "../../utils/helpers";
+import {withUser} from "../../utils/Store";
 
 interface SettingsProps {
 	photoInput: PhotoInput;
@@ -36,8 +36,13 @@ class SettingsBase extends Block<SettingsProps> {
 	}
 
 	getInputs(): Array<Input | PhotoInput> {
-		// @ts-ignore
-		return Object.values(this.children).filter(child => child instanceof Input || child instanceof PhotoInput);
+		const inputs: Array<Input | PhotoInput>  = [];
+		Object.values(this.children).forEach(child => {
+			if (child instanceof Input || child instanceof PhotoInput) {
+				inputs.push(child as (typeof child));
+			}
+		});
+		return inputs;
 	}
 
 	updateUserData() {
@@ -54,7 +59,7 @@ class SettingsBase extends Block<SettingsProps> {
 		if (!isEqual(oldProps.user_data || {}, newProps.user_data)) {
 			this.updateUserData();
 		}
-		return true
+		return true;
 	}
 
 	protected render() {
@@ -62,9 +67,4 @@ class SettingsBase extends Block<SettingsProps> {
 	}
 }
 
-const withUser = withStore((state) => {
-	return {
-		user_data: state.user.user_data ? { ...state.user.user_data } : null,
-	}
-});
 export const Settings = withUser(SettingsBase as unknown as typeof Block);

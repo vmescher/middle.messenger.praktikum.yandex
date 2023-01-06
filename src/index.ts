@@ -4,7 +4,7 @@ import registrationPage from './pages/Registration';
 // // import notFoundPage from './pages/404';
 // // import serviceErrorPage from './pages/503';
 import settingsPage from './pages/Settings';
-// import settingsEditPage from './pages/SettingsEdit';
+import settingsEditPage from './pages/SettingsEdit';
 // import chatsPage from './pages/Chats';
 // import dialogPage from './pages/Dialog';
 import Router from "./utils/Router";
@@ -18,8 +18,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 	Router
 		.use(Routes.Login, authPage as typeof Block)
 		.use(Routes.Register, registrationPage as typeof Block)
-		.use(Routes.Settings, settingsPage as typeof Block);
-		// .use(Routes.ProfileEdit, settingsEditPage)
+		.use(Routes.Settings, settingsPage as typeof Block)
+		.use(Routes.SettingsEdit, settingsEditPage as typeof Block)
 		// .use(Routes.Messenger, chatsPage);
 
 	let isProtectedRoute = true;

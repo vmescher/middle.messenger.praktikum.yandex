@@ -9,6 +9,7 @@ type PhotoInputProps = {
 	name: string;
 	accept: string;
 	disabled?: boolean;
+	events?: Record<string, (e?: Event) => void>;
 };
 
 export class PhotoInput extends Block<PhotoInputProps> {
