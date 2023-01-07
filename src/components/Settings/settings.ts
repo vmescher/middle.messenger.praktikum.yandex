@@ -48,15 +48,20 @@ class SettingsBase extends Block<SettingsProps> {
 	updateUserData() {
 		this.getInputs()
 			.forEach((child: Input | PhotoInput) => {
+				if (!this.props.user_data) return;
 				const dataItem = this.props.user_data[child.getName()];
 				if (dataItem) {
-					child.setProps({ value: String(dataItem) });
+					if (child instanceof PhotoInput) {
+						child.setProps({ value: 'https://ya-praktikum.tech/api/v2/resources/' + String(dataItem) });
+					} else {
+						child.setProps({ value: String(dataItem) });
+					}
 				}
 			});
 	}
 
 	protected componentDidUpdate(oldProps: SettingsProps, newProps: SettingsProps) {
-		if (!isEqual(oldProps.user_data || {}, newProps.user_data)) {
+		if (!isEqual(oldProps.user_data, newProps.user_data)) {
 			this.updateUserData();
 		}
 		return true;

@@ -14,6 +14,7 @@ interface Options {
 	headers?: Record<string, string>;
 	timeout?: number;
 	withCredentials?: boolean;
+	withFile?: boolean;
 }
 
 type HTTPMethod = <Response>(url: string, options?: Partial<Options>) => Promise<Response>;
@@ -49,6 +50,7 @@ export default class HTTPTransport {
 			data = null,
 			headers,
 			withCredentials = true,
+			withFile = false,
 		} = options;
 
 		return new Promise((resolve, reject) => {
@@ -69,12 +71,18 @@ export default class HTTPTransport {
 			xhr.withCredentials = withCredentials;
 			xhr.timeout = timeout;
 			xhr.responseType = 'json';
-			xhr.setRequestHeader('Content-Type', 'application/json');
 
 			if (headers) {
+
+				if (!headers.hasOwnProperty('Content-Type') && !withFile) {
+					xhr.setRequestHeader('Content-Type', 'application/json');
+				}
+
 				Object.entries(headers).forEach(([key, value]) => {
 					xhr.setRequestHeader(key, value);
 				});
+			} else {
+				if (!withFile) xhr.setRequestHeader('Content-Type', 'application/json');
 			}
 
 			xhr.onabort = () => reject({reason: 'abort'});
@@ -84,7 +92,20 @@ export default class HTTPTransport {
 			if (method === Methods.Get || !data) {
 				xhr.send();
 			} else {
-				xhr.send(JSON.stringify(data));
+				if (withFile) {
+					const formData = new FormData();
+					Object.entries(data).forEach(([key, value]) => {
+						if (value instanceof Blob) {
+							formData.append(`${key}`, value);
+						} else {
+							formData.append(`${key}`, JSON.stringify(value));
+						}
+					})
+					xhr.send(formData);
+				} else {
+					xhr.send(JSON.stringify(data));
+				}
+
 			}
 		});
 	}

@@ -19,6 +19,9 @@ type InputProps = {
 }
 
 export class Input extends Block<InputProps> {
+
+	valueBounce: number = 0;
+
 	constructor(props: InputProps) {
 		super('label', props);
 
@@ -36,7 +39,7 @@ export class Input extends Block<InputProps> {
 			const validity = new CheckValidity(target, this.props.validationType);
 
 			validity.checkValidity();
-			this.setProps({ error: validity.getError(), value: target!.value });
+			this.setProps({ error: validity.getError(), value: target.value });
 
 		}, { once: true });
 	};

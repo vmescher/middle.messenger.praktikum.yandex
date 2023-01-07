@@ -24,8 +24,8 @@ export class UserController {
 
 	async updateAvatar(data: UserAvatar) {
 		try {
-			const newUserData = await this.api.updateAvatar(data);
-			store.set('user.user_data', newUserData);
+			await this.api.updateAvatar(data);
+			// store.set('user.user_data.avatar', newUserData.avatar);
 		} catch (e: any) {
 			console.error(e);
 			return e;

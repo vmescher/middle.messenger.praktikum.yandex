@@ -1,13 +1,11 @@
 import Block from "../../utils/Block";
 import template from "./chatsLayout.hbs";
 import Chats from "../../components/Chats";
-import ReviewNav from "../../components/utils/ReviewNav";
 import Dialog from "../../components/Dialog";
 
 type ChatsLayoutProps = {
 	chatsList: Chats;
 	dialog?: Dialog;
-	reviewNav?: ReviewNav;
 }
 
 export class ChatsLayout extends Block<ChatsLayoutProps> {
@@ -23,11 +21,5 @@ export class ChatsLayout extends Block<ChatsLayoutProps> {
 		}
 
 		return this.compile(template, { ...this.props });
-	}
-
-	componentDidMount() {
-		Object.values(this.children).forEach((child) => {
-			child.dispatchComponentDidMount()
-		})
 	}
 }

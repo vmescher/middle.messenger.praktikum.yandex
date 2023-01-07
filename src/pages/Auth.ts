@@ -3,6 +3,7 @@ import Input from '../components/utils/Input';
 import Button from '../components/utils/Button';
 import EntranceLayout from '../layouts/EntranceLayout';
 import RouterLink from "../components/utils/RouterLink";
+import {Routes} from "../typings/enums";
 
 const loginInput = new Input({
 	label: 'Login',
@@ -28,7 +29,7 @@ const submitButton = new Button({
 
 const registrationLink = new RouterLink({
 	label: 'Sign Up',
-	href: '/sign-up',
+	href: Routes.Register,
 });
 
 const auth = new Auth({

@@ -5,6 +5,7 @@ type PhotoInputProps = {
 	styleClasses?: string[];
 	additionalClasses?: string[];
 	value?: string;
+	loadedImage?: File;
 	imageAlt?: string;
 	name: string;
 	accept: string;
@@ -17,6 +18,7 @@ export class PhotoInput extends Block<PhotoInputProps> {
 		super('div', props);
 
 		this.element!.classList.add('photo-input');
+		this.element!.addEventListener('change', this.setValue.bind(this));
 	}
 
 	getName() {
@@ -24,7 +26,17 @@ export class PhotoInput extends Block<PhotoInputProps> {
 	}
 
 	getValue() {
-		return this.props.value;
+		return this.props.loadedImage;
+	}
+
+	setValue(e: Event) {
+		if (e.target instanceof HTMLInputElement) {
+			const target = e.target as HTMLInputElement;
+
+			if (target.files && target.files.length) {
+				this.setProps({ loadedImage: target.files[0], value: URL.createObjectURL(target.files[0])})
+			}
+		}
 	}
 
 	render() {

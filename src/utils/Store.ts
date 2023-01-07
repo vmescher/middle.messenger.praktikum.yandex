@@ -1,6 +1,6 @@
 import EventBus from "./EventBus";
 import { set } from "./helpers";
-import {withStore} from "../hocs/withStore";
+import { withStore } from "../hocs/withStore";
 
 export enum StoreEvents {
 	Updated = 'updated'
@@ -46,4 +46,11 @@ const withUser = withStore((state) => {
 	}
 });
 
-export { withUser };
+const withChats = withStore((state) => {
+	return {
+		chats: state.chats ? [ ...state.chats ] : [],
+		searchResults: state.usersSearchResults ? [ ...state.usersSearchResults ] : [],
+	}
+});
+
+export { withUser, withChats };

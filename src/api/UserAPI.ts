@@ -19,7 +19,7 @@ export class UserAPI extends BaseAPI {
 	}
 
 	updateAvatar(data: UserAvatar): Promise<IUser> {
-		return this.http.put('/profile/avatar', { data });
+		return this.http.put('/profile/avatar', { data, withFile: true });
 	}
 
 	updatePassword(data: UserPassword): Promise<IUser> {

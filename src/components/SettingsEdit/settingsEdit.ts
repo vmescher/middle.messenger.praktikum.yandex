@@ -43,6 +43,12 @@ class SettingsEditBase extends Block<SettingsEditProps> {
 
 		const isFormReady = validateForm(e);
 		if (isFormReady) {
+
+			const avatarValue = this.getPhotoInput().getValue();
+			if (avatarValue) {
+				await UserController.updateAvatar({ avatar: avatarValue });
+			}
+
 			const fieldsValues = this.getInputs()
 				.map((child) => ([child.getName(), child.getValue()]));
 
@@ -65,7 +71,11 @@ class SettingsEditBase extends Block<SettingsEditProps> {
 			.forEach((child: Input | PhotoInput) => {
 				const dataItem = this.props.user_data[child.getName()];
 				if (dataItem) {
-					child.setProps({ value: String(dataItem) });
+					if (child instanceof PhotoInput) {
+						child.setProps({ value: 'https://ya-praktikum.tech/api/v2/resources/' + String(dataItem) });
+					} else {
+						child.setProps({ value: String(dataItem) });
+					}
 				}
 			});
 	}
@@ -79,7 +89,7 @@ class SettingsEditBase extends Block<SettingsEditProps> {
 	}
 
 	protected componentDidUpdate(oldProps: SettingsEditProps, newProps: SettingsEditProps) {
-		if (!isEqual(oldProps.user_data || {}, newProps.user_data)) {
+		if (!isEqual(oldProps.user_data, newProps.user_data)) {
 			this.updateUserData();
 		}
 		return true
