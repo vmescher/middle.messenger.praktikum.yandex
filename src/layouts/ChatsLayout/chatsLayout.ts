@@ -1,10 +1,9 @@
 import Block from "../../utils/Block";
 import template from "./chatsLayout.hbs";
-import Chats from "../../components/Chats";
 import Dialog from "../../components/Dialog";
 
 type ChatsLayoutProps = {
-	chatsList: Chats;
+	chatsList: Block;
 	dialog?: Dialog;
 }
 

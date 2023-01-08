@@ -109,7 +109,7 @@ function queryString(data: PlainObject) {
 		return result;
 	}
 
-	return getParams(data).map(arr => arr.join('=')).join('&');
+	return '?' + getParams(data).map(arr => arr.join('=')).join('&');
 }
 
 function merge(lhs: PlainObject, rhs: PlainObject): PlainObject {

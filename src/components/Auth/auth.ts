@@ -41,6 +41,10 @@ export class Auth extends Block<AuthProps> {
 								(child as Input).setError(response.reason);
 							}
 						});
+				} else {
+					Object.values(this.children)
+						.filter(child => child instanceof Input)
+						.forEach((child) => ((child as Input).setProps({ value: ''})));
 				}
 			}
 		});

@@ -9,9 +9,13 @@ export class ChatsController {
 	}
 
 	async create(title: string) {
-		await this.api.create({ title });
-
-		this.loadChats();
+		try {
+			await this.api.create({ title });
+			this.loadChats();
+		} catch (e: any) {
+			console.error(e);
+			return e;
+		}
 	}
 
 	async delete(id: number) {
@@ -24,8 +28,16 @@ export class ChatsController {
 		store.set('currentChatId', id);
 	}
 
-	async loadChats() {
-		const chats = await this.api.read();
+	async loadChats(title: string = '') {
+		const chats = await this.api.loadChats({ title });
+		const refactoredChats = chats.map((chat) => {
+			if (chat.last_message) {
+				const hour = String(new Date(chat.last_message.time).getHours()).padStart(2, '0'),
+					minutes = String(new Date(chat.last_message.time).getMinutes()).padStart(2, '0');
+				chat.last_message.human_time = `${hour}:${minutes}`;
+			}
+			return chat;
+		});
 
 		// chats.map(async (chat) => {
 		// 	const token = await this.getToken(chat.id);
@@ -33,7 +45,7 @@ export class ChatsController {
 		// 	await MessagesController.connect(chat.id, token);
 		// });
 
-		store.set('chats', chats);
+		store.set('chats', refactoredChats);
 	}
 
 	getToken(id: number) {

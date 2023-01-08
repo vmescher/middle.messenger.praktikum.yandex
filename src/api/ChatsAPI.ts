@@ -18,8 +18,8 @@ export class ChatsAPI extends BaseAPI {
 		return this.http.post('/', { data });
 	}
 
-	read(): Promise<IChat[]> {
-		return this.http.get('/');
+	loadChats(data: Record<'title', string>): Promise<IChat[]> {
+		return this.http.get('/', { data });
 	}
 
 	delete(identifier: number) {
@@ -32,6 +32,7 @@ export class ChatsAPI extends BaseAPI {
 		return response.token;
 	}
 
+	read = undefined;
 	update = undefined;
 
 }

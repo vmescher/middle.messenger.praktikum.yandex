@@ -4,7 +4,6 @@ import SearchInput from '../components/utils/SearchInput';
 import Dialog from '../components/Dialog';
 import ReviewNav from '../components/utils/ReviewNav';
 import MessageInput from '../components/utils/MessageInput';
-import sendForm from '../utils/SendForm';
 
 const chatsData = [
 	{

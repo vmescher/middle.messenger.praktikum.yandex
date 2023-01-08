@@ -64,6 +64,7 @@ export interface IChat {
 			phone: string;
 		},
 		time: string;
+		human_time?: string;
 		content: string;
 	}
 }

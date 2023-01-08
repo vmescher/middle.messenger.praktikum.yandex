@@ -12,6 +12,7 @@ type SearchInputProps = {
 };
 
 export class SearchInput extends Block<SearchInputProps> {
+
 	constructor(props: SearchInputProps) {
 		super('label', props);
 

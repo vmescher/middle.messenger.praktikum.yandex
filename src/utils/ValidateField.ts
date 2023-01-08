@@ -1,4 +1,4 @@
-type FieldTypes = 'name' | 'login' | 'email' | 'password' | 'phone' | 'message'
+type FieldTypes = 'name' | 'login' | 'email' | 'password' | 'phone' | 'base'
 
 type RuleType<P> = {
 	message?: string;
@@ -80,7 +80,7 @@ class CheckValidity {
 				value: 10,
 			},
 		},
-		message: {
+		base: {
 			required: {
 				value: true,
 			},

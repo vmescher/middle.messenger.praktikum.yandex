@@ -5,17 +5,20 @@
 <div class="chats__body">
 	<ul class="chats-list">
 		{{#if searching}}
-			{{#if searchResults}}
-				{{#each searchResults}}
+			{{#if chats}}
+				{{#each chats}}
 					<li data-chat-id="{{ this.id }}" class="chats-item chats-list__item">
 						<div class="chats-item__avatar avatar">
-							<img class="avatar__image" src="https://ya-praktikum.tech/api/v2/resources{{ this.avatar }}" onerror="this.style.display = 'none'" alt="{{this.login}} avatar">
+							<img class="avatar__image" src="{{#if this.avatar}}https://ya-praktikum.tech/api/v2/resources{{/if}}{{ this.avatar }}" onerror="this.style.display = 'none'" alt="{{this.title}} avatar">
 						</div>
 						<div class="chats-item__content">
 							<div class="chats-item__info">
-								<p class="chats-item__user">{{ this.display_name }}</p>
+								<p class="chats-item__user">{{ this.title }}</p>
+								{{#if this.last_message}}
+									<span class="chats-item__time">{{ this.last_message.human_time }}</span>
+								{{/if}}
 							</div>
-							<p class="chats-item__message">@{{this.login}}</p>
+							<p class="chats-item__message {{#if this.unread_count}}chats-item__message_unread{{/if}}" data-unread="{{ this.unread_count }}">{{#if this.last_message}}{{ this.lastMessage.content }}{{else}}Нет сообщений{{/if}}</p>
 						</div>
 					</li>
 				{{/each}}
@@ -24,25 +27,36 @@
 					<div class="chats-item__avatar avatar"></div>
 					<div class="chats-item__content">
 						<div class="chats-item__info">
-							<p class="chats-item__user">No results</p>
+							<p class="chats-item__user">No results found</p>
 						</div>
-						<p class="chats-item__message">Try to change typings or invite your friends</p>
+						<p class="chats-item__message">Try to change typing or click here to create a new chat</p>
 					</div>
 				</li>
 			{{/if}}
 		{{else}}
 			{{#if chats}}
+				<li class="chats-item chats-item_empty chats-list__item">
+					<div class="chats-item__avatar avatar"></div>
+					<div class="chats-item__content">
+						<div class="chats-item__info">
+							<p class="chats-item__user">Start a new chat</p>
+						</div>
+						<p class="chats-item__message">Click here to create a new one</p>
+					</div>
+				</li>
 				{{#each chats}}
 					<li data-chat-id="{{ this.id }}" class="chats-item chats-list__item">
 						<div class="chats-item__avatar avatar">
-							<img class="avatar__image" src="{{ this.user.avatar }}" onerror="this.style.display = 'none'" alt="{{this.user.name}} avatar">
+							<img class="avatar__image" src="{{#if this.avatar}}https://ya-praktikum.tech/api/v2/resources{{/if}}{{ this.avatar }}" onerror="this.style.display = 'none'" alt="{{this.title}} avatar">
 						</div>
 						<div class="chats-item__content">
 							<div class="chats-item__info">
-								<p class="chats-item__user">{{ this.user.displayName }}</p>
-								<span class="chats-item__time">{{ this.lastMessage.humanDate }}</span>
+								<p class="chats-item__user">{{ this.title }}</p>
+								{{#if this.last_message}}
+									<span class="chats-item__time">{{ this.last_message.human_time }}</span>
+								{{/if}}
 							</div>
-							<p class="chats-item__message {{#if unreadMessages}}chats-item__message_unread{{/if}}" data-unread="{{ this.unreadMessages }}">{{ this.lastMessage.value }}</p>
+							<p class="chats-item__message {{#if this.unread_count}}chats-item__message_unread{{/if}}" data-unread="{{ this.unread_count }}">{{#if this.last_message}}{{ this.lastMessage.content }}{{else}}Нет сообщений{{/if}}</p>
 						</div>
 					</li>
 				{{/each}}
@@ -53,7 +67,7 @@
 						<div class="chats-item__info">
 							<p class="chats-item__user">Chats list is empty</p>
 						</div>
-						<p class="chats-item__message">Search a user to start messaging</p>
+						<p class="chats-item__message">Click here to create a new one</p>
 					</div>
 				</li>
 			{{/if}}

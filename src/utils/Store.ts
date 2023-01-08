@@ -49,7 +49,7 @@ const withUser = withStore((state) => {
 const withChats = withStore((state) => {
 	return {
 		chats: state.chats ? [ ...state.chats ] : [],
-		searchResults: state.usersSearchResults ? [ ...state.usersSearchResults ] : [],
+		currentChatId: state.currentChatId,
 	}
 });
 

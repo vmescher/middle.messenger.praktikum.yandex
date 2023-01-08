@@ -1,13 +1,11 @@
 import Block from "../../utils/Block";
 import template from "./dialog.hbs";
-import ReviewNav from "../utils/ReviewNav";
 import MessageInput from "../utils/MessageInput";
 
 type DialogProps = {
-	dialogData: Record<string, unknown>;
+	chatId: number;
 	messageInput: MessageInput;
 	actionsList?: object[];
-	reviewNav?: ReviewNav;
 };
 
 export class Dialog extends Block<DialogProps> {
