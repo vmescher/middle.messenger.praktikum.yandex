@@ -29,23 +29,19 @@ export class ChatsController {
 	}
 
 	async loadChats(title: string = '') {
-		const chats = await this.api.loadChats({ title });
-		const refactoredChats = chats.map((chat) => {
-			if (chat.last_message) {
-				const hour = String(new Date(chat.last_message.time).getHours()).padStart(2, '0'),
-					minutes = String(new Date(chat.last_message.time).getMinutes()).padStart(2, '0');
-				chat.last_message.human_time = `${hour}:${minutes}`;
-			}
-			return chat;
-		});
+		try {
+			const chats = await this.api.loadChats({ title });
 
-		// chats.map(async (chat) => {
-		// 	const token = await this.getToken(chat.id);
-		//
-		// 	await MessagesController.connect(chat.id, token);
-		// });
+			// chats.map(async (chat) => {
+			// 	const token = await this.getToken(chat.id);
+			//
+			// 	await MessagesController.connect(chat.id, token);
+			// });
 
-		store.set('chats', refactoredChats);
+			store.set('chats', chats);
+		} catch (e: any) {
+			console.error(e);
+		}
 	}
 
 	getToken(id: number) {

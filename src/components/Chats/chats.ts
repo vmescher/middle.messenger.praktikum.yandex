@@ -1,11 +1,11 @@
 import Block from "../../utils/Block";
 import template from "./chats.hbs";
 import SearchInput from "../utils/SearchInput";
-import { withChats } from "../../utils/Store";
-import { IChat } from "../../typings/interfaces";
+import {IChat, ILastMessage} from "../../typings/interfaces";
 import ChatsController from "../../controllers/ChatsController";
-import { openModal } from "../../utils/Modal";
+import {openModal} from "../../utils/Modal";
 import CreateChatModal from "../../modals/CreateChat";
+import {withChats} from "../../utils/Store";
 
 interface ChatsProps {
 	searchInput: SearchInput;
@@ -16,9 +16,15 @@ interface ChatsProps {
 	events: Record<string, (e?: Event) => void>;
 }
 
+interface chatListItem extends IChat {
+	isActive: boolean;
+	last_message: ILastMessage & Record<'human_time', string>
+}
+
 export class ChatsBase extends Block<ChatsProps> {
 
-	searchBouncer: NodeJS.Timeout | undefined;
+	searchBouncer: number | undefined;
+	chatsItems: chatListItem[] = [];
 
 	constructor(props: ChatsProps) {
 		super('section', props);
@@ -74,8 +80,22 @@ export class ChatsBase extends Block<ChatsProps> {
 	}
 
 	render() {
+		this.chatsItems = this.props.chats.map((chat) => {
 
-		return this.compile(template, { ...this.props });
+			const newChatData = { ...chat } as chatListItem;
+
+			newChatData.isActive = this.props.currentChatId === chat.id;
+
+			if (chat.last_message) {
+				const hour = String(new Date(chat.last_message.time).getHours()).padStart(2, '0'),
+					minutes = String(new Date(chat.last_message.time).getMinutes()).padStart(2, '0');
+				newChatData.last_message.human_time = `${hour}:${minutes}`;
+			}
+
+			return newChatData as chatListItem;
+		});
+
+		return this.compile(template, { ...this.props, chatsItems: this.chatsItems });
 	}
 }
 

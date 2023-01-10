@@ -16,6 +16,8 @@ class Store extends EventBus<StoreEventsType> {
 		user: {
 			user_data: null,
 		},
+		chats: [],
+		currentChatId: null,
 	};
 
 	constructor() {
@@ -42,13 +44,13 @@ export default new Store();
 
 const withUser = withStore((state) => {
 	return {
-		user_data: state.user.user_data ? { ...state.user.user_data } : null,
+		user_data: state.user.user_data,
 	}
 });
 
 const withChats = withStore((state) => {
 	return {
-		chats: state.chats ? [ ...state.chats ] : [],
+		chats: state.chats,
 		currentChatId: state.currentChatId,
 	}
 });

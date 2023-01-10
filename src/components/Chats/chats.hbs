@@ -6,8 +6,8 @@
 	<ul class="chats-list">
 		{{#if searching}}
 			{{#if chats}}
-				{{#each chats}}
-					<li data-chat-id="{{ this.id }}" class="chats-item chats-list__item">
+				{{#each chatsItems}}
+					<li data-chat-id="{{ this.id }}" class="chats-item chats-list__item {{#if this.isActive }}chats-item_active{{/if}}">
 						<div class="chats-item__avatar avatar">
 							<img class="avatar__image" src="{{#if this.avatar}}https://ya-praktikum.tech/api/v2/resources{{/if}}{{ this.avatar }}" onerror="this.style.display = 'none'" alt="{{this.title}} avatar">
 						</div>
@@ -44,8 +44,8 @@
 						<p class="chats-item__message">Click here to create a new one</p>
 					</div>
 				</li>
-				{{#each chats}}
-					<li data-chat-id="{{ this.id }}" class="chats-item chats-list__item">
+				{{#each chatsItems}}
+					<li data-chat-id="{{ this.id }}" class="chats-item chats-list__item {{#if this.isActive }}chats-item_active{{/if}}">
 						<div class="chats-item__avatar avatar">
 							<img class="avatar__image" src="{{#if this.avatar}}https://ya-praktikum.tech/api/v2/resources{{/if}}{{ this.avatar }}" onerror="this.style.display = 'none'" alt="{{this.title}} avatar">
 						</div>
